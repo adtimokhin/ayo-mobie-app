@@ -6,7 +6,7 @@ const Title = ({ content }) => {
       <View className="items-center justify-center">
         <Text
           style={{ fontFamily: "lalezar", letterSpacing: "-4%" }}
-          className="text-bone text-[110px]"
+          className="text-bone text-[80px]"
         >
           {content}
         </Text>
