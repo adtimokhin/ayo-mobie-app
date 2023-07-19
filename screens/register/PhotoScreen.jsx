@@ -13,10 +13,12 @@ import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
+import ImageChose from "../../components/forms/ImageChose";
 
-const PasswordRegisterScreen = ({ route, navigation }) => {
+const PhotoRegisterScreen = ({ route, navigation }) => {
   //   const navigation = useNavigation();
-  const email  = route.params?.email;
+  const { email, password, gender, sexOfInterest } = route.params;
+  const [imageUrl, setImageUrl] = useState(null);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -24,48 +26,37 @@ const PasswordRegisterScreen = ({ route, navigation }) => {
   }, []);
 
   //   State of the fields
-  const [password, setPassword] = useState("");
   const handleLogin = () => {
-    // TODO: Handle login event
-    if (password === "") {
-      Alert.alert("Error", "Both fields are required");
-    } else {
-    //   
-    // TODO: Navigate to Password_again_register
-    navigation.navigate("Password_again_register", {passwordOne: password, email: email})
-    }
+    navigation.navigate("Home");
   };
 
   return (
     <SafeAreaView className="w-full h-full bg-purple">
       <NavHeader
         onPress={() => {
-          navigation.navigate("Email_register");
+          navigation.navigate("Sex_register");
         }}
       />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="flex-1 items-center ">
           <View className="w-full h-fit">
-            <Title content={"PASSWORD"} />
+            <Title content={"PHOTO"} />
           </View>
           <View className="w-full items-center justify-center">
             <View id="login_form" className="w-[90%]">
               <View className="w-full h-fit ">
-                <FormLabel label="Enter your password:" />
-                <TextInput
-                  className="w-full bg-[#C1ACE9] h-[40px] rounded-[14px] text-[#4E22A1] px-3"
-                  style={{ fontFamily: "lalezar" }}
-                  placeholder="********"
-                  secureTextEntry
-                  autoCorrect={false}
-                  spellCheck={false}
-                  value={password}
-                  onChangeText={setPassword}
-                />
+                <FormLabel label="What photo of you will others see?" />
               </View>
             </View>
+            <View className="w-[60%] h-[300px] items-center justify-center ">
+              <ImageChose setImageUrl={setImageUrl} />
+            </View>
             <View className="w-full h-fit items-center justify-center pt-24">
-              <CTAButton text={"Next"} onPress={handleLogin} disabled={password === ""} />
+              <CTAButton
+                text={"Create an account"}
+                onPress={handleLogin}
+                disabled={imageUrl == null}
+              />
             </View>
           </View>
         </View>
@@ -74,4 +65,4 @@ const PasswordRegisterScreen = ({ route, navigation }) => {
   );
 };
 
-export default PasswordRegisterScreen;
+export default PhotoRegisterScreen;

@@ -16,7 +16,7 @@ import NavHeader from "../../components/NavHeader";
 
 const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
   //   const navigation = useNavigation();
-  const { passwordOne } = route.params;
+  const passwordOne  = route.params?.passwordOne;
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -42,7 +42,7 @@ const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
     <SafeAreaView className="w-full h-full bg-purple">
       <NavHeader
         onPress={() => {
-          navigation.navigate("Email_register");
+          navigation.navigate("Password_register");
         }}
       />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -67,7 +67,7 @@ const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
               </View>
             </View>
             <View className="w-full h-fit items-center justify-center pt-24">
-              <CTAButton text={"Next"} onPress={handleLogin} />
+              <CTAButton text={"Next"} onPress={handleLogin} disabled={password === ""} />
             </View>
           </View>
         </View>

@@ -27,11 +27,20 @@ const SexOfInterestRegisterScreen = ({ route, navigation }) => {
 
   const handleLogin = () => {
     // TODO: Handle login event
+
+    navigation.navigate("Photo_register", {
+      ...route.params,
+      sexOfInterest: gender,
+    });
   };
 
   return (
     <SafeAreaView className="w-full h-full bg-purple">
-      <View className=" bg-transparent w-full h-[50] justify-center pl-1"></View>
+      <NavHeader
+        onPress={() => {
+          navigation.navigate("Gender_register");
+        }}
+      />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="flex-1 items-center ">
           <View className="w-full h-fit">

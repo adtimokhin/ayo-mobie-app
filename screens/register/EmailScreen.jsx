@@ -60,7 +60,7 @@ const EmailRegisterScreen = () => {
               </View>
             </View>
             <View className="w-full h-fit items-center justify-center pt-24">
-              <CTAButton text={"Next"} onPress={handleLogin} />
+              <CTAButton text={"Next"} onPress={handleLogin} disabled={email === ""}/>
             </View>
           </View>
           <View className="absolute bottom-1">

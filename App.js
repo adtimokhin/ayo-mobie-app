@@ -13,6 +13,9 @@ import PasswordRegisterScreen from "./screens/register/PasswordScreen";
 import ReEnterPasswordRegisterScreen from "./screens/register/ReEnterPasswordScreen";
 import GenderRegisterScreen from "./screens/register/GenderScreen";
 import SexOfInterestRegisterScreen from "./screens/register/SexOfInterestScreen";
+import PhotoRegisterScreen from "./screens/register/PhotoScreen";
+import WelcomeScreen from "./screens/WelcomeScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,14 +31,27 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name="Email_register" component={EmailRegisterScreen} />
-      <Stack.Screen name="Password_register" component={PasswordRegisterScreen} />
-      <Stack.Screen name="Password_again_register" component={ReEnterPasswordRegisterScreen} />
-      <Stack.Screen name="Gender_register" component={GenderRegisterScreen} />
-      <Stack.Screen name="Sex_register" component={SexOfInterestRegisterScreen} />
+      <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Email_register" component={EmailRegisterScreen} />
+        <Stack.Screen
+          name="Password_register"
+          component={PasswordRegisterScreen}
+        />
+        <Stack.Screen
+          name="Password_again_register"
+          component={ReEnterPasswordRegisterScreen}
+        />
+        <Stack.Screen name="Gender_register" component={GenderRegisterScreen} />
+        <Stack.Screen
+          name="Sex_register"
+          component={SexOfInterestRegisterScreen}
+        />
+        <Stack.Screen name="Photo_register" component={PhotoRegisterScreen} />
         <Stack.Screen name="Email_login" component={EmailScreen} />
         <Stack.Screen name="Password_login" component={PasswordScreen} />
-        <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

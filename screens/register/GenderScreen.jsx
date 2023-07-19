@@ -27,11 +27,16 @@ const GenderRegisterScreen = ({ route, navigation }) => {
 
   const handleLogin = () => {
     // TODO: Handle login event
-    navigation.navigate("Sex_register", {... route.params, gender: gender});
+    navigation.navigate("Sex_register", { ...route.params, gender: gender });
   };
 
   return (
     <SafeAreaView className="w-full h-full bg-purple">
+      <NavHeader
+        onPress={() => {
+          navigation.navigate("Password_again_register");
+        }}
+      />
       <View className=" bg-transparent w-full h-[50] justify-center pl-1"></View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="flex-1 items-center ">

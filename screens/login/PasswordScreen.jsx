@@ -31,6 +31,7 @@ const PasswordScreen = ({ route, navigation }) => {
       Alert.alert("Error", "Both fields are required");
     } else {
       Alert.alert("Success", `Password: ${password}, Email: ${email}`);
+      navigation.navigate("Home");
     }
   };
 
@@ -63,7 +64,7 @@ const PasswordScreen = ({ route, navigation }) => {
               </View>
             </View>
             <View className="w-full h-fit items-center justify-center pt-24">
-              <CTAButton text={"Login"} onPress={handleLogin} />
+              <CTAButton text={"Login"} onPress={handleLogin} disabled={password === ""} />
             </View>
           </View>
         </View>

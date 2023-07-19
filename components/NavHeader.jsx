@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
 const NavHeader = ({ onPress }) => {
-  const myIcon = <Icon name="left" size={29} color="#fff" />;
+  const myIcon = <Icon name="arrowleft" size={29} color="#fff" />;
 
   return (
     <View className=" bg-transparent w-full h-[50] justify-center pl-1">
