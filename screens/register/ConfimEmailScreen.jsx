@@ -15,9 +15,9 @@ import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
 import ImageChose from "../../components/forms/ImageChose";
 
-const PhotoRegisterScreen = ({ route, navigation }) => {
+const ConfimEmailRegisterScreen = ({ route, navigation }) => {
   //   const navigation = useNavigation();
-  const { email, password, gender, sexOfInterest } = route.params;
+//   const { email, password, gender, sexOfInterest } = route.params;
   const [imageUrl, setImageUrl] = useState(null);
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -27,38 +27,28 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
 
   //   State of the fields
   const handleLogin = () => {
-    // TODO: Handle login
-
-
-    navigation.navigate("Confirm_email_register", {...route.params}); // TODO: Add uri to photo
+    navigation.navigate("Home");
   };
 
   return (
     <SafeAreaView className="w-full h-full bg-purple">
-      <NavHeader
-        onPress={() => {
-          navigation.navigate("Sex_register");
-        }}
-      />
+      <View className=" bg-transparent w-full h-[50] justify-center pl-1"></View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="flex-1 items-center ">
           <View className="w-full h-fit">
-            <Title content={"PHOTO"} />
+            <Title content={"CONFIRM"} />
           </View>
           <View className="w-full items-center justify-center">
             <View id="login_form" className="w-[90%]">
               <View className="w-full h-fit ">
-                <FormLabel label="What photo of you will others see?" />
+                <FormLabel label="We sent you an email. Follow the link to verify your email" />
               </View>
             </View>
-            <View className="w-[60%] h-[300px] items-center justify-center ">
-              <ImageChose setImageUrl={setImageUrl} />
-            </View>
+            <View className="w-[60%] h-[300px] items-center justify-center "></View>
             <View className="w-full h-fit items-center justify-center pt-24">
               <CTAButton
-                text={"Create an account"}
+                text={"Press to Login"}
                 onPress={handleLogin}
-                disabled={imageUrl == null}
               />
             </View>
           </View>
@@ -68,4 +58,4 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
   );
 };
 
-export default PhotoRegisterScreen;
+export default ConfimEmailRegisterScreen;
