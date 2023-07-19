@@ -7,6 +7,7 @@ import useScreenDimensions from "../hooks/useScreenDimensions";
 import Title from "../components/Title";
 import NavBottom from "../components/NavBottom";
 import NavButton from "../components/NavButton";
+import PoolGallery from "../components/photo/PoolGallery";
 
 const PartyPoolScreen = () => {
   const navigation = useNavigation();
@@ -23,6 +24,24 @@ const PartyPoolScreen = () => {
       <View className="flex-1 items-center ">
         <View className="w-full h-fit">
           <Title content={"HERE RN"} />
+        </View>
+        <View className="w-full items-center justify-center flex-1 pb-[45px]">
+          <PoolGallery
+            photos={[
+              {
+                id: "1",
+                uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob5.jpg",
+              },
+              {
+                id: "2",
+                uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob3.jpg",
+              },
+              {
+                id: "3",
+                uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob2.jpg",
+              },
+            ]}
+          />
         </View>
       </View>
     </SafeAreaView>
