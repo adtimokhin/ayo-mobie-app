@@ -25,7 +25,7 @@ const MatchScrollScreen = () => {
         <View className="w-[100vw] h-fit">
           <Title content={"MACTHES"} />
         </View>
-        <View className="w-full items-center justify-center flex-1 pb-[45px]">
+        <View className="w-full items-center justify-center flex-1 pb-[45px] h-fit">
           <MatchGallery
             photos={[
               {

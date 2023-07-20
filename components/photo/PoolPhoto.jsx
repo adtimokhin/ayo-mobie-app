@@ -1,9 +1,9 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
-const PoolPhoto = ({ uri }) => {
+const PoolPhoto = ({ uri, liked, onPress }) => {
   const likeIcon = <Icon name="plus" size={50} color="#7D4439" />;
-  const successIcon = <Icon name="check" size={50} color="#7D4439" />;
+  const likedIcon = <Icon name="check" size={50} color="#7D4439" />;
 
   return (
     <View className="relative">
@@ -18,8 +18,11 @@ const PoolPhoto = ({ uri }) => {
         source={{ uri: uri }}
         className="rounded-[15px]"
       />
-      <TouchableOpacity className="w-[50px] h-[50px] bg-[#FE6244] rounded-full absolute bottom-10 right-2 z-20">
-        {likeIcon}
+      <TouchableOpacity
+        className="w-[50px] h-[50px] bg-[#FE6244] rounded-full absolute bottom-10 right-2 z-20"
+        onPress={onPress}
+      >
+        {liked ? likedIcon : likeIcon}
       </TouchableOpacity>
     </View>
   );

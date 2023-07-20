@@ -7,6 +7,9 @@ import useScreenDimensions from "../hooks/useScreenDimensions";
 import Title from "../components/Title";
 import NavBottom from "../components/NavBottom";
 import NavButton from "../components/NavButton";
+import Map from "../components/Map";
+
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 const MapScreen = () => {
   const navigation = useNavigation();
@@ -23,7 +26,9 @@ const MapScreen = () => {
         <View className="w-full h-fit">
           <Title content={"MAP"} />
         </View>
-
+        <View className="w-[100vw] h-[70vh] bg-black">
+          <Map/>
+        </View>
       </View>
     </SafeAreaView>
   );
