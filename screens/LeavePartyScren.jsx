@@ -12,7 +12,6 @@ import AuthNavHeader from "../components/auth/AuthNavHeader";
 
 const LeavePartyScren = () => {
   const navigation = useNavigation();
-  const { windowWidth, windowHeight } = useScreenDimensions();
 
   useLayoutEffect(() => {
     navigation.setOptions({

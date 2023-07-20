@@ -19,6 +19,7 @@ import LoadingCover from "../components/LoadingCover";
 import { FIREBASE_AUTH } from "../firebaseConfig";
 import { useDispatch } from "react-redux";
 import { clearUser } from "../redux/actions";
+import { deleteUserAccount } from "../utils/userActions";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -81,14 +82,42 @@ const SettingsScreen = () => {
                   text={"Logout from account"}
                 />
                 <SettingsButton
-                  onPress={() => {}}
+                  onPress={() => {
+                    Alert.alert(
+                      "Are you sure you want to delete this account?",
+                      "If you delete this account, you will not be able to restore any of the data.",
+                      [
+                        {
+                          text: "Delete",
+                          onPress: async () => {
+                            try {
+                              setLoading(true);
+                              await deleteUserAccount();
+                            } catch (error) {
+                              Alert.alert(
+                                "An error has occurred while deleting this account. Try again!"
+                              );
+                            } finally {
+                              setLoading(false);
+                            }
+                          },
+                          style: "destructive",
+                        },
+                        {
+                          text: "Cancel",
+                          onPress: () => console.log("Stay pressed"),
+                          style: "default",
+                        },
+                      ]
+                    );
+                  }}
                   text={"Delete account"}
                   contrast
                 />
               </ButtonBlock>
               {/* Block Three */}
               <ButtonBlock title={"Contacts"}>
-                <SettingsButton onPress={() => {}} text={"Send email"} />
+                <SettingsButton onPress={() => {}} text={"Send us email"} />
                 <SettingsButton onPress={() => {}} text={"View Instagram"} />
               </ButtonBlock>
 
