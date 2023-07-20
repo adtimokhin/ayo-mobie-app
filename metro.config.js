@@ -1,4 +1,4 @@
-const { getDefaultConfig } = require('metro-config');
+const { getDefaultConfig } = require("metro-config");
 
 module.exports = (async () => {
   const {
@@ -6,14 +6,16 @@ module.exports = (async () => {
   } = await getDefaultConfig();
 
   // Add 'db' and 'ttf' extensions to assets and remove 'svg' extension
-  const updatedAssetExts = [...assetExts, 'db', 'ttf'].filter(ext => ext !== 'svg');
+  const updatedAssetExts = [...assetExts, "db", "ttf"].filter(
+    (ext) => ext !== "svg"
+  );
 
   // Add 'svg' extension to source
-  const updatedSourceExts = [...sourceExts, 'svg'];
+  const updatedSourceExts = [...sourceExts, "svg", "cjs"];
 
   return {
     transformer: {
-      babelTransformerPath: require.resolve('react-native-svg-transformer'),
+      babelTransformerPath: require.resolve("react-native-svg-transformer"),
       getTransformOptions: async () => ({
         transform: {
           experimentalImportSupport: false,
