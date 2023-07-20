@@ -15,7 +15,7 @@ import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
 import { FIREBASE_AUTH } from "../../firebaseConfig";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import LoadingCover from "../../components/LoadingCover";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/actions";
@@ -44,10 +44,23 @@ const PasswordScreen = ({ route, navigation }) => {
       try {
         setLoading(true);
         const result = await signInWithEmailAndPassword(auth, email, password);
-        console.log(result);
-        // TODO: Set the context for the signed in user data
-        dispatch(setUser({email: result.email, uid: result.uid}));
-        navigation.navigate("NotJoinPartyStack");
+        const user = result.user;
+        // Only letting the user to use the app if they verified their email address.
+        if (!user.emailVerified) {
+          // Deny access if email is not verified
+          await signOut(FIREBASE_AUTH);
+          Alert.alert(
+            "The email address has not been verified. Check your email for the verification link"
+          );
+          setLoading(false);
+          return;
+          // throw new Error("Email is not verified");
+        } else {
+          console.log(result);
+          // TODO: Set the context for the signed in user data
+          dispatch(setUser({ email: result.email, uid: result.uid }));
+          navigation.navigate("NotJoinPartyStack");
+        }
       } catch (error) {
         setPassword("");
         let errorMessage = "";
@@ -76,6 +89,10 @@ const PasswordScreen = ({ route, navigation }) => {
           case "auth/network-request-failed":
             errorMessage =
               "A network error occurred. Please check your connection and try again.";
+            break;
+          case "Email is not verified":
+            errorMessage =
+              "The email address has not been verified. Check your email for the verification link";
             break;
           default:
             errorMessage = "An unknown error occurred. Please try again.";

@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Feather";
 
 const AuthNavHeader = () => {
   const navigation = useNavigation();
-  const myIcon = <Icon name="user" size={29} color="#fff" />;
+  const myIcon = <Icon name="settings" size={29} color="#fff" />;
 
   return (
     <View className=" bg-transparent w-full h-[30] justify-center pl-1">
