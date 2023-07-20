@@ -10,6 +10,7 @@ import NavButton from "../components/NavButton";
 import Map from "../components/Map";
 
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import AuthNavHeader from "../components/auth/AuthNavHeader";
 
 const MapScreen = () => {
   const navigation = useNavigation();
@@ -22,6 +23,7 @@ const MapScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-purple">
+        <AuthNavHeader />
       <View className="flex-1 items-center ">
         <View className="w-full h-fit">
           <Title content={"MAP"} />

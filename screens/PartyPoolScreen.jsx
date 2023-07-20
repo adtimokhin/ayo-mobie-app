@@ -8,6 +8,7 @@ import Title from "../components/Title";
 import NavBottom from "../components/NavBottom";
 import NavButton from "../components/NavButton";
 import PoolGallery from "../components/photo/PoolGallery";
+import AuthNavHeader from "../components/auth/AuthNavHeader";
 
 const PartyPoolScreen = () => {
   const navigation = useNavigation();
@@ -21,6 +22,7 @@ const PartyPoolScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-purple">
+        <AuthNavHeader />
       <View className="flex-1 items-center ">
         <View className="w-full h-fit">
           <Title content={"HERE  RN"} />

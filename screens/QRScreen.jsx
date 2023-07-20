@@ -10,6 +10,7 @@ import NavButton from "../components/NavButton";
 
 import CTAButton from "../components/CTAButton";
 import QRReader from "../components/qr/QRReader";
+import AuthNavHeader from "../components/auth/AuthNavHeader";
 
 const QRScreen = () => {
   const [startScan, setStartScan] = useState(false);
@@ -22,6 +23,7 @@ const QRScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-purple">
+      <AuthNavHeader />
       <View className="flex-1 items-center ">
         <View className="w-full h-fit">
           <Title content={"SCAN QR"} />

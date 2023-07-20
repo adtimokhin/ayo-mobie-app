@@ -8,6 +8,7 @@ import Title from "../components/Title";
 import NavBottom from "../components/NavBottom";
 import NavButton from "../components/NavButton";
 import CTAButton from "../components/CTAButton";
+import AuthNavHeader from "../components/auth/AuthNavHeader";
 
 const LeavePartyScren = () => {
   const navigation = useNavigation();
@@ -21,6 +22,7 @@ const LeavePartyScren = () => {
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-purple">
+        <AuthNavHeader />
       <View className="flex-1 items-center w-full">
         <View className="w-full h-fit bg-purple">
           <Title content={"LEAVE"} />

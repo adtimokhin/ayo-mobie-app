@@ -135,9 +135,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Loading" component={LoadingScreen} />
         <Stack.Screen name="JoinPartyStack" component={JoinPartyStack} />
         <Stack.Screen name="NotJoinPartyStack" component={NotJoinPartyStack} />
-        <Stack.Screen name="Loading" component={LoadingScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Email_register" component={EmailRegisterScreen} />
         <Stack.Screen

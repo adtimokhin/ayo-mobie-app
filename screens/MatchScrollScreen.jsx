@@ -8,6 +8,7 @@ import Title from "../components/Title";
 import NavBottom from "../components/NavBottom";
 import NavButton from "../components/NavButton";
 import MatchGallery from "../components/photo/MatchGallery";
+import AuthNavHeader from "../components/auth/AuthNavHeader";
 
 const MatchScrollScreen = () => {
   const navigation = useNavigation();
@@ -21,6 +22,7 @@ const MatchScrollScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-purple">
+      <AuthNavHeader />
       <View className="flex-1 items-center  ">
         <View className="w-[100vw] h-fit">
           <Title content={"MACTHES"} />
