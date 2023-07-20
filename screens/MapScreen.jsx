@@ -11,10 +11,14 @@ import Map from "../components/Map";
 
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import AuthNavHeader from "../components/auth/AuthNavHeader";
+import { useSelector } from "react-redux";
 
 const MapScreen = () => {
   const navigation = useNavigation();
 
+  //   TODO: Remove after testing
+  const user = useSelector((state) => state.user).user; // Here you're retrieving the user data from your Redux store
+  console.log(user);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -23,13 +27,13 @@ const MapScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-purple">
-        <AuthNavHeader />
+      <AuthNavHeader />
       <View className="flex-1 items-center ">
         <View className="w-full h-fit">
           <Title content={"MAP"} />
         </View>
         <View className="w-[100vw] h-[70vh] bg-black">
-          <Map/>
+          <Map />
         </View>
       </View>
     </SafeAreaView>

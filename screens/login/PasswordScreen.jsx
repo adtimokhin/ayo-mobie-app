@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import {
   Text,
   View,
@@ -17,12 +17,19 @@ import { FIREBASE_AUTH } from "../../firebaseConfig";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import LoadingCover from "../../components/LoadingCover";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/actions";
 
 const PasswordScreen = ({ route, navigation }) => {
   const auth = FIREBASE_AUTH;
+
+  // Navigation parameters
   const { email } = route.params;
 
+  // Hooks
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -30,8 +37,6 @@ const PasswordScreen = ({ route, navigation }) => {
     });
   }, []);
 
-  //   State of the fields
-  const [password, setPassword] = useState("");
   const handleLogin = async () => {
     if (password === "") {
       Alert.alert("Error", "You did not enter your password");
@@ -41,6 +46,7 @@ const PasswordScreen = ({ route, navigation }) => {
         const result = await signInWithEmailAndPassword(auth, email, password);
         console.log(result);
         // TODO: Set the context for the signed in user data
+        dispatch(setUser(...result));
         navigation.navigate("NotJoinPartyStack");
       } catch (error) {
         setPassword("");

@@ -28,6 +28,11 @@ import PartyPoolScreen from "./screens/PartyPoolScreen";
 import LeavePartyScren from "./screens/LeavePartyScren";
 import SettingsScreen from "./screens/SettingsScreen";
 
+// Redux
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
+// React Navigator
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -76,6 +81,7 @@ function NotJoinPartyStack() {
   );
 }
 
+// TODO: Move this stack to another file
 function JoinPartyStack() {
   const navigation = useNavigation();
   useLayoutEffect(() => {
@@ -133,36 +139,44 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Loading" component={LoadingScreen} />
-        <Stack.Screen name="JoinPartyStack" component={JoinPartyStack} />
-        <Stack.Screen name="NotJoinPartyStack" component={NotJoinPartyStack} />
-        <Stack.Screen name="Welcome" component={WelcomeScreen} />
-        <Stack.Screen name="Email_register" component={EmailRegisterScreen} />
-        <Stack.Screen
-          name="Password_register"
-          component={PasswordRegisterScreen}
-        />
-        <Stack.Screen
-          name="Password_again_register"
-          component={ReEnterPasswordRegisterScreen}
-        />
-        <Stack.Screen name="Gender_register" component={GenderRegisterScreen} />
-        <Stack.Screen
-          name="Sex_register"
-          component={SexOfInterestRegisterScreen}
-        />
-        <Stack.Screen name="Photo_register" component={PhotoRegisterScreen} />
-        <Stack.Screen
-          name="Confirm_email_register"
-          component={ConfimEmailRegisterScreen}
-        />
-        <Stack.Screen name="Email_login" component={EmailScreen} />
-        <Stack.Screen name="Password_login" component={PasswordScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Loading" component={LoadingScreen} />
+          <Stack.Screen name="JoinPartyStack" component={JoinPartyStack} />
+          <Stack.Screen
+            name="NotJoinPartyStack"
+            component={NotJoinPartyStack}
+          />
+          <Stack.Screen name="Welcome" component={WelcomeScreen} />
+          <Stack.Screen name="Email_register" component={EmailRegisterScreen} />
+          <Stack.Screen
+            name="Password_register"
+            component={PasswordRegisterScreen}
+          />
+          <Stack.Screen
+            name="Password_again_register"
+            component={ReEnterPasswordRegisterScreen}
+          />
+          <Stack.Screen
+            name="Gender_register"
+            component={GenderRegisterScreen}
+          />
+          <Stack.Screen
+            name="Sex_register"
+            component={SexOfInterestRegisterScreen}
+          />
+          <Stack.Screen name="Photo_register" component={PhotoRegisterScreen} />
+          <Stack.Screen
+            name="Confirm_email_register"
+            component={ConfimEmailRegisterScreen}
+          />
+          <Stack.Screen name="Email_login" component={EmailScreen} />
+          <Stack.Screen name="Password_login" component={PasswordScreen} />
+          <Stack.Screen name="Settings" component={SettingsScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
