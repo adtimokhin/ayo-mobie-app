@@ -5,6 +5,9 @@ import { Text, View } from "react-native";
 import Logo from "../assets/Loading Screen Icon.svg";
 import useScreenDimensions from "../hooks/useScreenDimensions";
 
+
+// TODO: Delete this screen. It is redundant now
+
 const HomeScreen = () => {
   const navigation = useNavigation();
   const { windowWidth, windowHeight } = useScreenDimensions();

@@ -26,6 +26,7 @@ import { useLayoutEffect } from "react";
 import MatchScrollScreen from "./screens/MatchScrollScreen";
 import PartyPoolScreen from "./screens/PartyPoolScreen";
 import LeavePartyScren from "./screens/LeavePartyScren";
+import SettingsScreen from "./screens/SettingsScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -93,10 +94,9 @@ function JoinPartyStack() {
             iconName = "heart";
           } else if (route.name === "PartyPool") {
             iconName = "users";
-          }else if(route.name === "LeaveParty"){
-            iconName = "log-out"
+          } else if (route.name === "LeaveParty") {
+            iconName = "log-out";
           }
-
 
           // Return a Icon component with the relevant icon name
           return <Icon name={iconName} size={size} color={color} />;
@@ -160,6 +160,7 @@ export default function App() {
         />
         <Stack.Screen name="Email_login" component={EmailScreen} />
         <Stack.Screen name="Password_login" component={PasswordScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
