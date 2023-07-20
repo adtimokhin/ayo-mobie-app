@@ -46,7 +46,7 @@ const PasswordScreen = ({ route, navigation }) => {
         const result = await signInWithEmailAndPassword(auth, email, password);
         console.log(result);
         // TODO: Set the context for the signed in user data
-        dispatch(setUser(...result));
+        dispatch(setUser({email: result.email, uid: result.uid}));
         navigation.navigate("NotJoinPartyStack");
       } catch (error) {
         setPassword("");
