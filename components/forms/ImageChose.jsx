@@ -54,7 +54,14 @@ const ImageChose = ({ setImageUrl, imageCover, loading }) => {
       className="w-full bg-[#C1ACE9] h-full rounded-[15px] relative"
       onPress={handleChoosePhoto}
     >
-      {loading && <ActivityIndicator size="large" color="#0000ff" />}
+      {loading && (
+        <ActivityIndicator
+          size={20}
+          color="#FE6244"
+          className="absolute top-1/2 left-1/2"
+          style={{ transform: [{ translateX: -10 }, { translateY: -10 }] }}
+        />
+      )}
       {imageCover && (
         <Image
           source={{ uri: imageCover }}
@@ -62,7 +69,7 @@ const ImageChose = ({ setImageUrl, imageCover, loading }) => {
           className="z-0 rounded-[15px] absolute top-0"
         />
       )}
-      <View className="w-[30px] h-[30px] bg-[#FE6244] rounded-full absolute bottom-1 right-1 z-20">
+      <View className="w-[30px] h-[30px] bg-orange rounded-full absolute bottom-1 right-1 z-20">
         {imageSource ? successIcon : myIcon}
       </View>
       {imageSource && (

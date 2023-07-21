@@ -57,31 +57,14 @@ export async function deleteUserAccount() {
   }
 }
 
-export async function changeUserSex(userUID, value){
-    // value: that is the the new value of the field. Must be one of the predefined values
-
-    // Step 0: Check that the update is valid.
-    if (["male", "female", "other"].indexOf(value) === -1) {
-        throw new Error("Value error: Value must one of the following: male, female, other")
-    }
-
-    // Step 1: Remove the user from the party if they are there.
-    // TODO: Implement
-
-    // Step 2: Get the user document
-    const userDoc = doc(FIREBASE_DB, "users", userUID);
-
-    // Step 3: Update the user document
-    await updateDoc(userDoc, {sex:value});
-    
-}
-
-export async function changeUserSexOfInterest(userUID, value){
+export async function changeUserSex(userUID, value) {
   // value: that is the the new value of the field. Must be one of the predefined values
 
   // Step 0: Check that the update is valid.
   if (["male", "female", "other"].indexOf(value) === -1) {
-      throw new Error("Value error: Value must one of the following: male, female, other")
+    throw new Error(
+      "Value error: Value must one of the following: male, female, other"
+    );
   }
 
   // Step 1: Remove the user from the party if they are there.
@@ -91,6 +74,32 @@ export async function changeUserSexOfInterest(userUID, value){
   const userDoc = doc(FIREBASE_DB, "users", userUID);
 
   // Step 3: Update the user document
-  await updateDoc(userDoc, {sexOfInterest:value});
-  
+  await updateDoc(userDoc, { sex: value });
+}
+
+export async function changeUserSexOfInterest(userUID, value) {
+  // value: that is the the new value of the field. Must be one of the predefined values
+
+  // Step 0: Check that the update is valid.
+  if (["male", "female", "other"].indexOf(value) === -1) {
+    throw new Error(
+      "Value error: Value must one of the following: male, female, other"
+    );
+  }
+
+  // Step 1: Remove the user from the party if they are there.
+  // TODO: Implement
+
+  // Step 2: Get the user document
+  const userDoc = doc(FIREBASE_DB, "users", userUID);
+
+  // Step 3: Update the user document
+  await updateDoc(userDoc, { sexOfInterest: value });
+}
+
+export async function changeUserCurrentParty(userUID, partyUID) {
+  const userDoc = doc(FIREBASE_DB, "users", userUID);
+  await updateDoc(userDoc, {
+    partyUID: partyUID,
+  });
 }

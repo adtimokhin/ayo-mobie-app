@@ -19,6 +19,11 @@ const LeavePartyScren = () => {
     });
   }, []);
 
+  const handleLeavePool = async function () {
+
+    navigation.navigate("NotJoinPartyStack");
+  }
+
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-purple">
         <AuthNavHeader />
@@ -37,7 +42,7 @@ const LeavePartyScren = () => {
                 [
                   {
                     text: "Exit",
-                    onPress: () => navigation.navigate("NotJoinPartyStack"),
+                    onPress: () => handleLeavePool,
                     style: "destructive",
                   },
                   {

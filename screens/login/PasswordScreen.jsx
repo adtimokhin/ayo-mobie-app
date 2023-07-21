@@ -59,10 +59,14 @@ const PasswordScreen = ({ route, navigation }) => {
         } else {
           // Fetch data from the database about a user.
           const userData = await getUserData(user.uid);
-          dispatch(
-            setUser({ email: user.email, uid: user.uid, ...userData })
-          );
-          navigation.navigate("NotJoinPartyStack");
+          dispatch(setUser({ email: user.email, uid: user.uid, ...userData }));
+
+          if (userData.partyUID !== undefined) {
+            // If they are registered at some party pool then we need to navigate them to the correct screen
+            navigation.navigate("JoinPartyStack");
+          } else {
+            navigation.navigate("NotJoinPartyStack");
+          }
         }
       } catch (error) {
         setPassword("");

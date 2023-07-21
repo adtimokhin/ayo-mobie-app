@@ -56,7 +56,7 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
       const userUID = userCredentials.user.uid;
 
       // adding user to firestore database
-      const userDB = await setDoc(doc(FIREBASE_DB, "users", userUID), {
+      await setDoc(doc(FIREBASE_DB, "users", userUID), {
         uid: userUID,
         email: email,
         sex: gender,
@@ -74,7 +74,7 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
 
       const blob = await response.blob();
       console.log("Blob >> ", blob);
-      await uploadBytes(imageRef, blob, { contentType: "image/jpeg" });
+      await uploadBytes(imageRef, blob, { contentType: "image/jpeg" }); // TODO: This file may be of othrt tpye of image
       // await imageRef.putFile(imageUrl); // Unsure might not work
 
       // Updating the database

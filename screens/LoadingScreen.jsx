@@ -30,8 +30,13 @@ const LoadingScreen = () => {
         console.log(user);
         const userData = await getUserData(user.uid);
         dispatch(setUser({ email: user.email, uid: user.uid, ...userData }));
-        // TODO: Check if the user is already at a party to determine where to navigate them.
-        navigation.navigate("NotJoinPartyStack");
+
+        if (userData.partyUID !== undefined) {
+          // If they are registered at some party pool then we need to navigate them to the correct screen
+          navigation.navigate("JoinPartyStack");
+        } else {
+          navigation.navigate("NotJoinPartyStack");
+        }
       } else {
         console.log("No User :(");
         dispatch(clearUser()); // dispatch your logout action

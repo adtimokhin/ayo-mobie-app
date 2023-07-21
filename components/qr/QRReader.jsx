@@ -3,7 +3,7 @@ import { Alert, View } from "react-native";
 
 import { BarCodeScanner } from "expo-barcode-scanner";
 
-const QRReader = () => {
+const QRReader = ({ onFail, onQRScanned }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -20,17 +20,18 @@ const QRReader = () => {
       "Need camera access",
       "Please go to settings and allow the app to use camera. Otherwise you can't scan the QR code to join!"
     );
+    onFail();
     return <></>;
   }
 
   //   Method for handling scanned qr
   const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    alert(`QR code with data ${data} has been scanned!`);
+    onFail();
+    onQRScanned(data);
   };
 
   return (
-    <View className="w-[300px] h-[300px] bg-orange">
+    <View className="w-[80vw] h-[85vw] bg-orange">
       {scanned ? (
         <></>
       ) : (

@@ -54,6 +54,7 @@ const SettingsScreen = () => {
                   onPress={() => {
                     navigation.navigate("ChangePhoto", {
                       photoUrl: userData.imageName,
+                      userUID: userData.uid
                     });
                   }}
                   text={"Change profile pic"}

@@ -21,11 +21,11 @@ import {
   FIREBASE_STORAGE,
 } from "../../firebaseConfig";
 import LoadingCover from "../../components/LoadingCover";
-import { ref, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const ChangePhotoScreen = ({ route, navigation }) => {
   //   const navigation = useNavigation();
-  const { photoUrl } = route.params;
+  const { photoUrl, userUID } = route.params;
   const [imageUrl, setImageUrl] = useState(null);
   const [oldImageDownloadUrl, setOldImageDownloadUrl] = useState(undefined);
   const [loading, setLoading] = useState(false);
@@ -44,8 +44,42 @@ const ChangePhotoScreen = ({ route, navigation }) => {
     });
   }, []);
 
-  //   State of the fields
-  const handleChangePhoto = async () => {};
+  //   Handle update of the image of a given user.
+  const handleChangePhoto = async () => {
+    // TODO: Add security rules that prohibit users from changing the image of other users
+    try {
+      setLoading(true);
+
+      // Changing data on he back-end
+      const imagePath = imageUrl.split("/").pop();
+      const fileName = `${userUID}.${imagePath.split(".")[1]}`;
+      console.log("fileName :>> ", fileName);
+      const imageRef = ref(FIREBASE_STORAGE, `images/${fileName}`);
+
+      const response = await fetch(imageUrl);
+
+      const blob = await response.blob();
+      console.log("Blob >> ", blob);
+      await uploadBytes(imageRef, blob, { contentType: "image/jpeg" });
+
+      // Letting the user know that the image has been uploaded successfully
+      Alert.alert("All set!", "", [
+        {
+          text: "Nice",
+          // Return user back to the settings page after a button on the alert has been pressed
+          onPress: () => navigation.goBack(),
+          style: "default",
+        },
+      ]);
+    } catch (error) {
+      Alert.alert(
+        "Error",
+        "Something went wrong while changing the image. Try again"
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View>
