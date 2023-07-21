@@ -1,10 +1,11 @@
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
 import * as ImagePicker from "expo-image-picker";
 import { useEffect, useState } from "react";
+import { ActivityIndicator } from "react-native";
 
-const ImageChose = ({ setImageUrl }) => {
+const ImageChose = ({ setImageUrl, imageCover, loading }) => {
   const [imageSource, setImageSource] = useState(null);
 
   useEffect(() => {
@@ -53,6 +54,14 @@ const ImageChose = ({ setImageUrl }) => {
       className="w-full bg-[#C1ACE9] h-full rounded-[15px] relative"
       onPress={handleChoosePhoto}
     >
+      {loading && <ActivityIndicator size="large" color="#0000ff" />}
+      {imageCover && (
+        <Image
+          source={{ uri: imageCover }}
+          style={{ width: "100%", height: "100%" }}
+          className="z-0 rounded-[15px] absolute top-0"
+        />
+      )}
       <View className="w-[30px] h-[30px] bg-[#FE6244] rounded-full absolute bottom-1 right-1 z-20">
         {imageSource ? successIcon : myIcon}
       </View>

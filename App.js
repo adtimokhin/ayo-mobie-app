@@ -33,6 +33,7 @@ import SettingsScreen from "./screens/SettingsScreen";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import ChangeSexOfInterestScreen from "./screens/settings/ChangeSexOfInterestScreen";
+import ChangePhotoScreen from "./screens/settings/ChangePhotoScreen";
 
 // React Navigator
 const Stack = createNativeStackNavigator();
@@ -182,6 +183,7 @@ export default function App() {
             name="ChangeSexOfInterest"
             component={ChangeSexOfInterestScreen}
           />
+          <Stack.Screen name="ChangePhoto" component={ChangePhotoScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

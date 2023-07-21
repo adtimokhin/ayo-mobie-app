@@ -51,7 +51,11 @@ const SettingsScreen = () => {
             <ScrollView className="w-[90vw] h-[60vh]">
               <ButtonBlock title={"Profile settings"}>
                 <SettingsButton
-                  onPress={() => {}}
+                  onPress={() => {
+                    navigation.navigate("ChangePhoto", {
+                      photoUrl: userData.imageName,
+                    });
+                  }}
                   text={"Change profile pic"}
                 />
                 <SettingsButton
@@ -62,11 +66,14 @@ const SettingsScreen = () => {
                   }}
                   text={"Change my gender"}
                 />
-                <SettingsButton onPress={() => {
-                   navigation.navigate("ChangeSexOfInterest", {
-                    currentSex: userData.sexOfInterest,
-                  });
-                }} text={"Change who I see"} />
+                <SettingsButton
+                  onPress={() => {
+                    navigation.navigate("ChangeSexOfInterest", {
+                      currentSex: userData.sexOfInterest,
+                    });
+                  }}
+                  text={"Change who I see"}
+                />
               </ButtonBlock>
               {/* Block two */}
               <ButtonBlock title={"General"}>
