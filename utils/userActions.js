@@ -3,11 +3,11 @@ import {
   FIREBASE_DB,
   FIREBASE_STORAGE,
 } from "../firebaseConfig";
-import { doc, deleteDoc, getDoc } from "firebase/firestore";
+import { doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 import { ref, deleteObject } from "firebase/storage";
 
-async function getUserData(userUID) {
+export async function getUserData(userUID) {
   const docSnap = await getDoc(doc(FIREBASE_DB, "users", userUID));
   if (docSnap.exists()) {
     return docSnap.data();
@@ -55,4 +55,42 @@ export async function deleteUserAccount() {
     console.error("Error deleting user: " + error.message);
     throw error;
   }
+}
+
+export async function changeUserSex(userUID, value){
+    // value: that is the the new value of the field. Must be one of the predefined values
+
+    // Step 0: Check that the update is valid.
+    if (["male", "female", "other"].indexOf(value) === -1) {
+        throw new Error("Value error: Value must one of the following: male, female, other")
+    }
+
+    // Step 1: Remove the user from the party if they are there.
+    // TODO: Implement
+
+    // Step 2: Get the user document
+    const userDoc = doc(FIREBASE_DB, "users", userUID);
+
+    // Step 3: Update the user document
+    await updateDoc(userDoc, {sex:value});
+    
+}
+
+export async function changeUserSexOfInterest(userUID, value){
+  // value: that is the the new value of the field. Must be one of the predefined values
+
+  // Step 0: Check that the update is valid.
+  if (["male", "female", "other"].indexOf(value) === -1) {
+      throw new Error("Value error: Value must one of the following: male, female, other")
+  }
+
+  // Step 1: Remove the user from the party if they are there.
+  // TODO: Implement
+
+  // Step 2: Get the user document
+  const userDoc = doc(FIREBASE_DB, "users", userUID);
+
+  // Step 3: Update the user document
+  await updateDoc(userDoc, {sexOfInterest:value});
+  
 }

@@ -20,6 +20,7 @@ import ConfimEmailRegisterScreen from "./screens/register/ConfimEmailScreen";
 import QRScreen from "./screens/QRScreen";
 import MapScreen from "./screens/MapScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ChangeSexScreen from "./screens/settings/ChangeSexScreen";
 
 import Icon from "react-native-vector-icons/Feather";
 import { useLayoutEffect } from "react";
@@ -31,6 +32,7 @@ import SettingsScreen from "./screens/SettingsScreen";
 // Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import ChangeSexOfInterestScreen from "./screens/settings/ChangeSexOfInterestScreen";
 
 // React Navigator
 const Stack = createNativeStackNavigator();
@@ -175,6 +177,11 @@ export default function App() {
           <Stack.Screen name="Password_login" component={PasswordScreen} />
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="ChangeGender" component={ChangeSexScreen} />
+          <Stack.Screen
+            name="ChangeSexOfInterest"
+            component={ChangeSexOfInterestScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

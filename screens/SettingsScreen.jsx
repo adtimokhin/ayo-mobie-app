@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
 import {
   Alert,
+  Linking,
   SafeAreaView,
   ScrollView,
   Text,
@@ -17,12 +18,13 @@ import ButtonBlock from "../components/settings/ButtonBlock";
 import { signOut } from "firebase/auth";
 import LoadingCover from "../components/LoadingCover";
 import { FIREBASE_AUTH } from "../firebaseConfig";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../redux/actions";
 import { deleteUserAccount } from "../utils/userActions";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
+  const userData = useSelector((state) => state.user).user;
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -52,8 +54,19 @@ const SettingsScreen = () => {
                   onPress={() => {}}
                   text={"Change profile pic"}
                 />
-                <SettingsButton onPress={() => {}} text={"Change my gender"} />
-                <SettingsButton onPress={() => {}} text={"Change who I see"} />
+                <SettingsButton
+                  onPress={() => {
+                    navigation.navigate("ChangeGender", {
+                      currentSex: userData.sex,
+                    });
+                  }}
+                  text={"Change my gender"}
+                />
+                <SettingsButton onPress={() => {
+                   navigation.navigate("ChangeSexOfInterest", {
+                    currentSex: userData.sexOfInterest,
+                  });
+                }} text={"Change who I see"} />
               </ButtonBlock>
               {/* Block two */}
               <ButtonBlock title={"General"}>
@@ -117,13 +130,52 @@ const SettingsScreen = () => {
               </ButtonBlock>
               {/* Block Three */}
               <ButtonBlock title={"Contacts"}>
-                <SettingsButton onPress={() => {}} text={"Send us email"} />
-                <SettingsButton onPress={() => {}} text={"View Instagram"} />
+                <SettingsButton
+                  onPress={async () => {
+                    const emailReceiver = "ayo.notifications@gmail.com";
+                    const subject = "App Help";
+
+                    const url = `mailto:${emailReceiver}?subject=${encodeURIComponent(
+                      subject
+                    )}`;
+
+                    const canOpenURL = await Linking.canOpenURL(url);
+                    if (canOpenURL) {
+                      Linking.openURL(url);
+                    } else {
+                      Alert.alert("Could not open your mail application.");
+                    }
+                  }}
+                  text={"Send us email"}
+                />
+                <SettingsButton
+                  onPress={async () => {
+                    const url = "instagram://user?username=ayo_theone";
+
+                    // Check if the Instagram app can be opened
+                    const canOpenURL = await Linking.canOpenURL(url);
+
+                    if (canOpenURL) {
+                      Linking.openURL(url);
+                    } else {
+                      // If the Instagram app isn't installed, open in the browser
+                      Linking.openURL(`https://www.instagram.com/ayo_theone`);
+                    }
+                  }}
+                  text={"View Instagram"}
+                />
               </ButtonBlock>
 
               {/* Terms and conditions text */}
               <View className="w-full flex-row justify-between h-fit">
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={async () => {
+                    // TODO: Change this link to the real terms and conditions file
+                    Linking.openURL(
+                      "https://github.com/adtimokhin/ayo-web/blob/main/terms.txt"
+                    );
+                  }}
+                >
                   <Text
                     className="text-center text-lg text-bone"
                     style={{ fontFamily: "lalezar" }}
@@ -131,7 +183,14 @@ const SettingsScreen = () => {
                     Terms and conditions
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={async () => {
+                    // TODO: Change this link to the real Privacy Policy file
+                    Linking.openURL(
+                      "https://github.com/adtimokhin/ayo-web/blob/main/terms.txt"
+                    );
+                  }}
+                >
                   <Text
                     className="text-center text-lg text-orange"
                     style={{ fontFamily: "lalezar" }}

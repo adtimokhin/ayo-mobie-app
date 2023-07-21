@@ -19,6 +19,7 @@ import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import LoadingCover from "../../components/LoadingCover";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/actions";
+import { getUserData } from "../../utils/userActions";
 
 const PasswordScreen = ({ route, navigation }) => {
   const auth = FIREBASE_AUTH;
@@ -56,9 +57,11 @@ const PasswordScreen = ({ route, navigation }) => {
           return;
           // throw new Error("Email is not verified");
         } else {
-          console.log(result);
-          // TODO: Set the context for the signed in user data
-          dispatch(setUser({ email: result.email, uid: result.uid }));
+          // Fetch data from the database about a user.
+          const userData = await getUserData(user.uid);
+          dispatch(
+            setUser({ email: user.email, uid: user.uid, ...userData })
+          );
           navigation.navigate("NotJoinPartyStack");
         }
       } catch (error) {

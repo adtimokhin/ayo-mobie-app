@@ -9,6 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "../firebaseConfig";
 import { useDispatch } from "react-redux";
 import { clearUser, setUser } from "../redux/actions";
+import { getUserData } from "../utils/userActions";
 
 const LoadingScreen = () => {
   const navigation = useNavigation();
@@ -22,12 +23,13 @@ const LoadingScreen = () => {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, (user) => {
+    const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, async (user) => {
       console.log("We are here!");
       if (user) {
         // TODO: Take the values needed from the user object
         console.log(user);
-        dispatch(setUser({ email: user.email, uid: user.uid })); // dispatch your login action
+        const userData = await getUserData(user.uid);
+        dispatch(setUser({ email: user.email, uid: user.uid, ...userData }));
         // TODO: Check if the user is already at a party to determine where to navigate them.
         navigation.navigate("NotJoinPartyStack");
       } else {
