@@ -61,21 +61,24 @@ function NotJoinPartyStack() {
           }
 
           // Return a Icon component with the relevant icon name
-          return <Icon name={iconName} size={size} color={color} />;
+          return <Icon name={iconName} size={30} color={color} />;
         },
         tabBarStyle: {
-          height: 90,
+          width: "86%",
           paddingHorizontal: 5,
           paddingTop: 0,
-          backgroundColor: "#5F29C7",
+          backgroundColor: "#C1ACE9",
           position: "absolute",
+          left: "7%",
+          borderRadius: "17px",
           borderTopWidth: 0,
+          flex: 1,
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#FE6244",
-        inactiveTintColor: "#FCFBFC",
-        showLabel: false,
+        activeTintColor: "#4E22A1",
+        inactiveTintColor: "#8D6EC9",
+        showLabel: true,
       }}
     >
       <Tab.Screen name="Map" component={MapScreen} />
@@ -111,18 +114,32 @@ function JoinPartyStack() {
           return <Icon name={iconName} size={size} color={color} />;
         },
         tabBarStyle: {
-          height: 90,
+          // OLD styles
+          // height: 90,
+          // paddingHorizontal: 5,
+          // paddingTop: 0,
+          // backgroundColor: "#5F29C7",
+          // position: "absolute",
+          // borderTopWidth: 0,
+          width: "86%",
           paddingHorizontal: 5,
           paddingTop: 0,
-          backgroundColor: "#5F29C7",
+          backgroundColor: "#C1ACE9",
           position: "absolute",
+          left: "7%",
+          borderRadius: "17px",
           borderTopWidth: 0,
+          flex: 1,
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#FE6244",
-        inactiveTintColor: "#FCFBFC",
-        showLabel: false,
+        // Old styles
+        // activeTintColor: "#FE6244",
+        // inactiveTintColor: "#FCFBFC",
+        // showLabel: false,
+        activeTintColor: "#4E22A1",
+        inactiveTintColor: "#8D6EC9",
+        showLabel: true,
       }}
     >
       <Tab.Screen name="Match" component={MatchScrollScreen} />

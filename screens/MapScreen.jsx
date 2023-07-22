@@ -26,14 +26,15 @@ const MapScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView className="flex-1 items-center justify-center bg-purple">
-      <AuthNavHeader text="MAP" />
+    <SafeAreaView className="flex-1 w-full h-full items-center justify-center bg-purple">
+      <AuthNavHeader text="PARTIES AROUND YOU" />
       {/* TODO: Go around and remove the Title component */}
       <View className="flex-1 items-center ">
-        <View className="w-full h-fit">
+        {/* <View className="w-full h-fit">
           <Title content={"MAP"} />
-        </View>
-        <View className="w-[100vw] h-[70vh] bg-black">
+        </View> */}
+
+        <View className="w-[100vw] h-[100vh] bg-black">
           <Map />
         </View>
       </View>

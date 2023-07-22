@@ -61,7 +61,7 @@ const PasswordScreen = ({ route, navigation }) => {
           const userData = await getUserData(user.uid);
           dispatch(setUser({ email: user.email, uid: user.uid, ...userData }));
 
-          if (userData.partyUID !== undefined) {
+          if (userData.partyUID !== undefined && userData.partyUID !== null) {
             // If they are registered at some party pool then we need to navigate them to the correct screen
             navigation.navigate("JoinPartyStack");
           } else {

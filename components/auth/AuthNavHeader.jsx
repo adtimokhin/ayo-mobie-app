@@ -7,10 +7,10 @@ const AuthNavHeader = ({ text }) => {
   const myIcon = <Icon name="settings" size={29} color="#fff" />;
 
   return (
-    <View className=" bg-transparent w-full h-[30] justify-center pl-1 relative">
+    <View className=" bg-transparent w-full h-[30] justify-center ml-4 relative mb-2">
       {text && (
         <Text
-          className="text-bone absolute top-1 left-1/2 text-[20px]"
+          className="text-bone absolute top-1 text-[20px] left-3"
           style={{ fontFamily: "lalezar", letterSpacing: "-1%" }}
         >
           {text}
