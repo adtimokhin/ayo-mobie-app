@@ -7,8 +7,11 @@ import {
   doc,
   deleteDoc,
   getDoc,
-  updateDoc,
+  getDocs,
+  collection,
+  where,
   Timestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 import { ref, deleteObject } from "firebase/storage";
@@ -38,10 +41,10 @@ export async function checkPartyActiveByPartyId(partyId) {
   return fromDT <= now && now < untilDT;
 }
 
-export async function checkPartyActiveByPartyData(partyData) {
-  const untilDT = new Date(partyData.untilDT.seconds * 1000);
-  const fromDT = new Date(partyData.fromDT.seconds * 1000);
-  const now = new Date();
+export function checkPartyActiveByPartyData(partyData) {
+  const untilDT = partyData.untilDT;
+  const fromDT = partyData.fromDT;
+  const now = Timestamp.now();
 
   return fromDT <= now && now < untilDT;
 }
@@ -55,4 +58,32 @@ export async function getPatyDataById(partyUID) {
   }
 
   return partyDoc.data();
+}
+
+export async function getAllPartyData() {
+  const dataToReturn = [];
+  const querySnapshot = await getDocs(collection(FIREBASE_DB, "parties"));
+
+  querySnapshot.forEach((doc) => {
+    const dataToPush = doc.data();
+    dataToPush.uid = doc.id;
+    dataToReturn.push(dataToPush);
+  });
+
+  return dataToReturn;
+}
+
+export async function getAllActivePartiesData() {
+  const dataToReturn = [];
+  const querySnapshot = await getDocs(collection(FIREBASE_DB, "parties"));
+
+  querySnapshot.forEach((doc) => {
+    const dataToPush = doc.data();
+    dataToPush.uid = doc.id;
+    if (checkPartyActiveByPartyData(dataToPush)) {
+      dataToReturn.push(dataToPush);
+    }
+  });
+
+  return dataToReturn;
 }
