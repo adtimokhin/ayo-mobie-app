@@ -2,10 +2,12 @@ import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import MapMarker from "./MapMarker";
 import { useEffect, useState } from "react";
 import { getAllActivePartiesData } from "../../utils/partyActions";
+import { convertFirebaseTimeToString } from "../../utils/time";
 const Map = ({ userCoord }) => {
   // userCoord is an object that has two values: latitude and longitude
 
   const [markers, setMarkers] = useState([]);
+
   useEffect(() => {
     const retrievePartyData = async () => {
       const partyData = await getAllActivePartiesData();
@@ -22,6 +24,9 @@ const Map = ({ userCoord }) => {
             key={party.uid}
             latitude={party.location.latitude}
             longitude={party.location.longitude}
+            name={party.partyName}
+            startTime={convertFirebaseTimeToString(party.fromDT)}
+            endTime={convertFirebaseTimeToString(party.untilDT)}
           ></MapMarker>
         );
       });
@@ -35,6 +40,11 @@ const Map = ({ userCoord }) => {
     });
   }, []);
 
+  const handleRegionChange = (region) => {
+    // TODO: handle the change of which markers are visible based on the zoom level
+    console.log(region.latitudeDelta);
+  };
+
   return (
     <MapView
       provider={PROVIDER_GOOGLE}
@@ -45,6 +55,7 @@ const Map = ({ userCoord }) => {
         latitudeDelta: 0.09,
         longitudeDelta: 0.09,
       }}
+      onRegionChangeComplete={handleRegionChange}
     >
       {markers}
     </MapView>

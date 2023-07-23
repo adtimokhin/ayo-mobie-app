@@ -1,11 +1,38 @@
-import { Marker } from "react-native-maps";
+import { View, Text, Image } from "react-native";
+import { Marker, Callout } from "react-native-maps";
+import GeoMarkerImage from "../../assets/geoPointer.png";
 
-const MapMarker = ({ latitude, longitude }) => {
+const MapMarker = ({
+  latitude,
+  longitude,
+  name,
+  startTime,
+  endTime,
+  zoomLevel,
+}) => {
+  if (zoomLevel > 0.4) {
+    return <></>;
+  }
   return (
     <Marker
       coordinate={{ latitude: latitude, longitude: longitude }}
       pinColor="green"
-    ></Marker>
+    >
+      <View className="rounded-[15px] p-5 justify-center items-center">
+        <Text className="bg-purple text-bone p-2 rounded-sm mb-3">{name}</Text>
+        <Image source={GeoMarkerImage} style={{ height: 50, width: 50 }} />
+      </View>
+      {/* <View style={{ backgroundColor: "red", borderRadius: 5, padding: 3 }}>
+        <Text style={{ color: "white" }}>{name}</Text>
+      </View> */}
+      <Callout>
+        <View>
+          <Text className="pb-2">{name}</Text>
+          <Text>Starts: {startTime}</Text>
+          <Text>Finishes: {endTime}</Text>
+        </View>
+      </Callout>
+    </Marker>
   );
 };
 

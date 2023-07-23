@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Alert, SafeAreaView, Text, View } from "react-native";
+import { Alert, Image, SafeAreaView, Text, View } from "react-native";
 
 import Logo from "../assets/Loading Screen Icon.svg";
 import useScreenDimensions from "../hooks/useScreenDimensions";
