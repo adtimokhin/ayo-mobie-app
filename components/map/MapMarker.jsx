@@ -22,9 +22,6 @@ const MapMarker = ({
         <Text className="bg-purple text-bone p-2 rounded-sm mb-3">{name}</Text>
         <Image source={GeoMarkerImage} style={{ height: 50, width: 50 }} />
       </View>
-      {/* <View style={{ backgroundColor: "red", borderRadius: 5, padding: 3 }}>
-        <Text style={{ color: "white" }}>{name}</Text>
-      </View> */}
       <Callout>
         <View>
           <Text className="pb-2">{name}</Text>

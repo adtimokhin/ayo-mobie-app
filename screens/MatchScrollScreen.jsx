@@ -1,18 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useLayoutEffect } from "react";
-import { Image, SafeAreaView, Text, View } from "react-native";
+import { useLayoutEffect } from "react";
+import { SafeAreaView, View } from "react-native";
 
-import Logo from "../assets/Loading Screen Icon.svg";
-import useScreenDimensions from "../hooks/useScreenDimensions";
 import Title from "../components/Title";
-import NavBottom from "../components/NavBottom";
-import NavButton from "../components/NavButton";
 import MatchGallery from "../components/photo/MatchGallery";
 import AuthNavHeader from "../components/auth/AuthNavHeader";
 
 const MatchScrollScreen = () => {
   const navigation = useNavigation();
-  const { windowWidth, windowHeight } = useScreenDimensions();
 
   useLayoutEffect(() => {
     navigation.setOptions({

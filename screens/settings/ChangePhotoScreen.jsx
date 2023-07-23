@@ -1,13 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import {
-  Text,
-  View,
-  Alert,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
-  SafeAreaView,
-} from "react-native";
+import { View, Alert, SafeAreaView } from "react-native";
 import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
@@ -15,11 +7,7 @@ import NavHeader from "../../components/NavHeader";
 import ImageChose from "../../components/forms/ImageChose";
 
 // Firebase things
-import {
-  FIREBASE_AUTH,
-  FIREBASE_DB,
-  FIREBASE_STORAGE,
-} from "../../firebaseConfig";
+import { FIREBASE_STORAGE } from "../../firebaseConfig";
 import LoadingCover from "../../components/LoadingCover";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 

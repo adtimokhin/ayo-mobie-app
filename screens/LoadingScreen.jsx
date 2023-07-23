@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useLayoutEffect } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import Logo from "../assets/Loading Screen Icon.svg";
 import useScreenDimensions from "../hooks/useScreenDimensions";
@@ -24,9 +24,7 @@ const LoadingScreen = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, async (user) => {
-      console.log("We are here!");
       if (user) {
-        // TODO: Take the values needed from the user object
         console.log(user);
         const userData = await getUserData(user.uid);
         dispatch(setUser({ email: user.email, uid: user.uid, ...userData }));
@@ -46,11 +44,6 @@ const LoadingScreen = () => {
 
     // cleanup method
     return unsubscribe;
-
-    // setTimeout(() => {
-    //   // TODO: Add behavior during loading
-    //   // navigation.navigate("Welcome");
-    // }, 2000);
   }, [dispatch]);
 
   return (

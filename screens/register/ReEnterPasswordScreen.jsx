@@ -1,7 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
 import {
-  Text,
   View,
   Alert,
   TextInput,
@@ -15,8 +13,7 @@ import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
 
 const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
-  //   const navigation = useNavigation();
-  const passwordOne  = route.params?.passwordOne;
+  const passwordOne = route.params?.passwordOne;
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -26,11 +23,9 @@ const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
   //   State of the fields
   const [password, setPassword] = useState("");
   const handleLogin = () => {
-    // TODO: Handle login event
     if (password !== passwordOne) {
       Alert.alert("Passwords do not match");
     } else {
-      // TODO:
       navigation.navigate("Gender_register", {
         email: route.params.email,
         password: passwordOne,
@@ -67,7 +62,11 @@ const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
               </View>
             </View>
             <View className="w-full h-fit items-center justify-center pt-24">
-              <CTAButton text={"Next"} onPress={handleLogin} disabled={password === ""} />
+              <CTAButton
+                text={"Next"}
+                onPress={handleLogin}
+                disabled={password === ""}
+              />
             </View>
           </View>
         </View>

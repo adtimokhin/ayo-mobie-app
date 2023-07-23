@@ -32,7 +32,12 @@ const WelcomeScreen = () => {
         </View>
         <View className="w-full items-center justify-center">
           <View className="w-full h-fit items-center justify-center pt-24">
-            <CTAButton text={"Register"} onPress={() => {navigation.navigate("Email_register")}} />
+            <CTAButton
+              text={"Register"}
+              onPress={() => {
+                navigation.navigate("Email_register");
+              }}
+            />
           </View>
         </View>
         <View className="absolute bottom-1">
@@ -53,10 +58,6 @@ const WelcomeScreen = () => {
         </View>
       </View>
     </SafeAreaView>
-
-    // <View className="flex-1 items-center justify-center bg-purple">
-    //   <Logo width={windowWidth * 0.8} />
-    // </View>
   );
 };
 

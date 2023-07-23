@@ -1,17 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { Alert, SafeAreaView, Text, View } from "react-native";
+import { useLayoutEffect, useState } from "react";
+import { Alert, SafeAreaView, View } from "react-native";
 
-import Logo from "../assets/Loading Screen Icon.svg";
-import useScreenDimensions from "../hooks/useScreenDimensions";
 import Title from "../components/Title";
-import NavBottom from "../components/NavBottom";
-import NavButton from "../components/NavButton";
 import CTAButton from "../components/CTAButton";
 import AuthNavHeader from "../components/auth/AuthNavHeader";
 import {
   getPoolByPartyUID,
-  getPoolDataById,
   removeUserFromActivePoolByUserUID,
   updateTimeUserLeft,
 } from "../utils/poolActions";

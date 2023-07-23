@@ -1,20 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Alert, Image, SafeAreaView, Text, View } from "react-native";
+import { Alert, SafeAreaView, View } from "react-native";
 
-import Logo from "../assets/Loading Screen Icon.svg";
-import useScreenDimensions from "../hooks/useScreenDimensions";
-import Title from "../components/Title";
-import NavBottom from "../components/NavBottom";
-import NavButton from "../components/NavButton";
 import Map from "../components/map/Map";
 
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import AuthNavHeader from "../components/auth/AuthNavHeader";
 import { useSelector } from "react-redux";
 
 import * as Location from "expo-location";
-import MapMarker from "../components/map/MapMarker";
 
 const MapScreen = () => {
   const navigation = useNavigation();
@@ -61,11 +54,6 @@ const MapScreen = () => {
       <AuthNavHeader text="PARTIES AROUND YOU" />
       {/* TODO: Go around and remove the Title component */}
       <View className="flex-1 items-center ">
-        {/* <View className="w-full h-fit">
-          <Title content={"MAP"} />
-        </View> */}
-
-        {/* 41.79304080455358, -87.59984340477672 */}
         <View className="w-[100vw] h-[100vh] bg-black">
           {userPosition && <Map userCoord={userPosition}></Map>}
         </View>

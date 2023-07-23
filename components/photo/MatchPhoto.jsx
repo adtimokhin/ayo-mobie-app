@@ -1,4 +1,3 @@
-import FastImage from "react-native-fast-image";
 import useScreenDimensions from "../../hooks/useScreenDimensions";
 import { Image } from "react-native";
 
@@ -18,7 +17,6 @@ const MatchPhoto = ({ uri }) => {
       }}
       source={{ uri: uri }}
       className="rounded-[15px]"
-      //   resizeMode={FastImage.resizeMode.contain}
     />
   );
 };

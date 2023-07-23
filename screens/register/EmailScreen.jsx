@@ -12,7 +12,6 @@ import {
 import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
-import NavHeader from "../../components/NavHeader";
 
 const EmailRegisterScreen = () => {
   const navigation = useNavigation();
@@ -26,7 +25,6 @@ const EmailRegisterScreen = () => {
   const [email, setEmail] = useState("");
 
   const handleLogin = () => {
-    // TODO: Handle login event
     if (email === "") {
       Alert.alert("Error", "Both fields are required");
     } else {
@@ -60,7 +58,11 @@ const EmailRegisterScreen = () => {
               </View>
             </View>
             <View className="w-full h-fit items-center justify-center pt-24">
-              <CTAButton text={"Next"} onPress={handleLogin} disabled={email === ""}/>
+              <CTAButton
+                text={"Next"}
+                onPress={handleLogin}
+                disabled={email === ""}
+              />
             </View>
           </View>
           <View className="absolute bottom-1">
@@ -72,7 +74,7 @@ const EmailRegisterScreen = () => {
               <Text
                 className="text-orange underline"
                 onPress={() => {
-                  navigation.navigate("Email_login")
+                  navigation.navigate("Email_login");
                 }}
               >
                 Login!

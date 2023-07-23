@@ -1,12 +1,6 @@
-import {
-  FIREBASE_APP,
-  FIREBASE_AUTH,
-  FIREBASE_DB,
-  FIREBASE_STORAGE,
-} from "../firebaseConfig";
+import { FIREBASE_DB } from "../firebaseConfig";
 import {
   doc,
-  deleteDoc,
   getDoc,
   getDocs,
   updateDoc,
@@ -14,11 +8,30 @@ import {
   arrayRemove,
   runTransaction,
   Timestamp,
-  collection, query, where, 
+  collection,
+  query,
+  where,
 } from "firebase/firestore";
-import { deleteUser } from "firebase/auth";
-import { ref, deleteObject } from "firebase/storage";
 
+/**
+ * Asynchronously retrieves the data for a pool document from the Firestore database.
+ * It takes in the UID of the pool, and returns the pool's document data if it exists.
+ *
+ * @param {string} poolUID - The UID of the pool.
+ *
+ * @throws {FirebaseError} Throws an error if the Firestore document retrieval operation fails.
+ *
+ * @returns {Promise<Object>} Returns a Promise that resolves to an Object containing the pool's document data if it exists.
+ *                            If the pool document does not exist, it resolves to an empty object.
+ *
+ * @example
+ * try {
+ *   const poolData = await getPoolDataById("poolUID1234");
+ *   console.log("Retrieved pool data: ", poolData);
+ * } catch (error) {
+ *   console.error("Failed to retrieve pool data: " + error.message);
+ * }
+ */
 export async function getPoolDataById(poolUID) {
   const poolRef = doc(FIREBASE_DB, "pools", poolUID);
   const poolDoc = await getDoc(poolRef);
@@ -29,6 +42,26 @@ export async function getPoolDataById(poolUID) {
 
   return poolDoc.data();
 }
+
+/**
+ * Asynchronously adds a user to an active pool in the Firestore database.
+ * It takes in the UIDs of the pool and user, and updates the 'currentlyPresent' array field of the pool document by adding the user's document reference.
+ *
+ * @param {string} poolUID - The UID of the pool.
+ * @param {string} userUID - The UID of the user.
+ *
+ * @throws {FirebaseError} Throws an error if the Firestore document update operation fails.
+ *
+ * @returns {Promise<void>} Returns a Promise that resolves to void when the update operation is successful.
+ *
+ * @example
+ * try {
+ *   await addUserToActivePoolByUserUID("poolUID1234", "userUID5678");
+ *   console.log("User successfully added to active pool");
+ * } catch (error) {
+ *   console.error("Failed to add user to active pool: " + error.message);
+ * }
+ */
 export async function addUserToActivePoolByUserUID(poolUID, userUID) {
   const partyPoolRef = doc(FIREBASE_DB, "pools", poolUID);
   const userRef = doc(FIREBASE_DB, "users", userUID);
@@ -37,6 +70,28 @@ export async function addUserToActivePoolByUserUID(poolUID, userUID) {
     currentlyPresent: arrayUnion(userRef),
   });
 }
+/**
+ * Asynchronously updates the user's attended pools in the Firestore database.
+ * It takes in the UIDs of the pool and user, and uses a transaction to safely read and update the 'attended' array field of the pool document.
+ * Each element in the 'attended' array is an object containing a reference to the user's document, the timestamp when the user entered the pool, and the timestamp when the user left the pool.
+ * If the user has not left the pool yet, the 'timeLeft' field is set to false.
+ *
+ * @param {string} poolUID - The UID of the pool.
+ * @param {string} userUID - The UID of the user.
+ *
+ * @throws {FirebaseError} Throws an error if the Firestore transaction fails.
+ * @throws {string} Throws an error message if the pool does not exist.
+ *
+ * @returns {Promise<void>} Returns a Promise that resolves to void when the transaction is successful.
+ *
+ * @example
+ * try {
+ *   await updateUserAttendedPoolByUserUID("poolUID1234", "userUID5678");
+ *   console.log("User's attended pools successfully updated");
+ * } catch (error) {
+ *   console.error("Failed to update user's attended pools: " + error.message);
+ * }
+ */
 export async function updateUserAttendedPoolByUserUID(poolUID, userUID) {
   const partyPoolRef = doc(FIREBASE_DB, "pools", poolUID);
   const userRef = doc(FIREBASE_DB, "users", userUID);
@@ -69,6 +124,26 @@ export async function updateUserAttendedPoolByUserUID(poolUID, userUID) {
   });
 }
 
+/**
+ * Asynchronously removes the specified user from the active pool in the Firestore database.
+ * This function will modify the 'currentlyPresent' array field in the pool document,
+ * by removing the reference to the specified user's document.
+ *
+ * @param {string} poolUID - The unique identifier (UID) of the pool from which the user will be removed.
+ * @param {string} userUID - The unique identifier (UID) of the user to be removed from the pool.
+ *
+ * @returns {Promise<void>} Returns a Promise that resolves to void when the update is successful.
+ *
+ * @throws {FirebaseError} Throws an error if the Firestore operation fails.
+ *
+ * @example
+ * try {
+ *   await removeUserFromActivePoolByUserUID("poolUID1234", "userUID5678");
+ *   console.log("User successfully removed from the pool");
+ * } catch (error) {
+ *   console.error("Failed to remove user from the pool: " + error.message);
+ * }
+ */
 export async function removeUserFromActivePoolByUserUID(poolUID, userUID) {
   const partyPoolRef = doc(FIREBASE_DB, "pools", poolUID);
   const userRef = doc(FIREBASE_DB, "users", userUID);
@@ -78,6 +153,28 @@ export async function removeUserFromActivePoolByUserUID(poolUID, userUID) {
   });
 }
 
+/**
+ * Asynchronously updates the time a user left a pool in the Firestore database.
+ * The function runs a Firestore transaction, during which it updates the 'attended' array
+ * in the pool document, setting the 'timeLeft' property for the user's attendance record
+ * to the current timestamp.
+ *
+ * @param {string} poolUID - The unique identifier (UID) of the pool where the user's attendance time will be updated.
+ * @param {string} userUID - The unique identifier (UID) of the user whose attendance time is to be updated.
+ *
+ * @returns {Promise<void>} Returns a Promise that resolves to void when the update is successful.
+ *
+ * @throws {FirebaseError} Throws an error if the Firestore operation fails.
+ * @throws {string} Throws a string error message if the specified pool does not exist.
+ *
+ * @example
+ * try {
+ *   await updateTimeUserLeft("poolUID1234", "userUID5678");
+ *   console.log("User's left time successfully updated");
+ * } catch (error) {
+ *   console.error("Failed to update user's left time: " + error.message);
+ * }
+ */
 export async function updateTimeUserLeft(poolUID, userUID) {
   const partyPoolRef = doc(FIREBASE_DB, "pools", poolUID);
   const userRef = doc(FIREBASE_DB, "users", userUID);
@@ -106,7 +203,28 @@ export async function updateTimeUserLeft(poolUID, userUID) {
   });
 }
 
-export async function getPoolByPartyUID(partyUID){
+/**
+ * Asynchronously retrieves a pool document from the Firestore 'pools' collection associated with a specified party UID.
+ * This function creates a Firestore query that finds all pool documents where the 'partyRef' field matches the specified party's document reference.
+ * Then, it executes the query and pushes the data of each resulting document into an array.
+ * Given that there should only be one pool per party, the function returns the first (and presumably only) pool in the array.
+ *
+ * @param {string} partyUID - The unique identifier (UID) of the party whose associated pool is to be retrieved.
+ *
+ * @returns {Promise<Object>} Returns a Promise that resolves to an object representing the first pool associated with the specified party.
+ * The object includes all fields from the pool document in the Firestore 'pools' collection, as well as an additional 'uid' field set to the document's ID.
+ *
+ * @throws {FirebaseError} Throws an error if the Firestore operation fails.
+ *
+ * @example
+ * try {
+ *   const poolData = await getPoolByPartyUID("partyUID1234");
+ *   console.log("Retrieved pool data: ", poolData);
+ * } catch (error) {
+ *   console.error("Failed to retrieve pool data: " + error.message);
+ * }
+ */
+export async function getPoolByPartyUID(partyUID) {
   const partyRef = doc(FIREBASE_DB, "parties", partyUID);
   const poolsRef = collection(FIREBASE_DB, "pools");
 

@@ -7,10 +7,7 @@ const NavHeader = ({ onPress }) => {
   return (
     <View className=" bg-transparent w-full h-[50] justify-center pl-1">
       <TouchableOpacity className="flex-row w-fit" onPress={onPress}>
-        <Text
-          className="text-white text-2xl"
-          style={{ fontFamily: "lalezar" }}
-        >
+        <Text className="text-white text-2xl" style={{ fontFamily: "lalezar" }}>
           {myIcon}
         </Text>
       </TouchableOpacity>

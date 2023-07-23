@@ -1,9 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import {
-  Text,
   View,
   Alert,
-  TextInput,
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
@@ -42,8 +40,6 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
 
   //   State of the fields
   const handleAccountCreation = async () => {
-    // TODO: Handle login
-
     // adding user to account list
     setLoading(true);
     try {
@@ -92,7 +88,7 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
       await signOut(FIREBASE_AUTH);
 
       // navigating to the new page
-      navigation.navigate("Confirm_email_register", { ...route.params }); // TODO: Add uri to photo
+      navigation.navigate("Confirm_email_register", { ...route.params });
     } catch (error) {
       console.log("Error: " + error.message);
       Alert.alert(

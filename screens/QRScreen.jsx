@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
-import { Alert, SafeAreaView, Text, View } from "react-native";
+import { Alert, SafeAreaView, View } from "react-native";
 
 import Title from "../components/Title";
 

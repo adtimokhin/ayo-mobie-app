@@ -1,27 +1,17 @@
-import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
-import {
-  Text,
-  View,
-  Alert,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
-  SafeAreaView,
-} from "react-native";
+import { View, Alert, SafeAreaView } from "react-native";
 import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
 import RadioButtonCollection from "../../components/forms/RadioButtonCollection";
 import { useDispatch, useSelector } from "react-redux";
-import { changeUserSex, changeUserSexOfInterest } from "../../utils/userActions";
+import { changeUserSexOfInterest } from "../../utils/userActions";
 import LoadingCover from "../../components/LoadingCover";
 import { setUser } from "../../redux/actions";
 
 const ChangeSexOfInterestScreen = ({ route, navigation }) => {
   // Hooks
-  // const navigation = useNavigation();
   const userData = useSelector((state) => state.user).user;
   const dispatch = useDispatch();
   const { currentSex } = route.params;
@@ -36,7 +26,8 @@ const ChangeSexOfInterestScreen = ({ route, navigation }) => {
   //   State of the fields
   const [gender, setGender] = useState(currentSex);
 
-  const handleChangeGender = () => { // TODO: Update the method to handle sexOfInterest
+  const handleChangeGender = () => {
+    // TODO: Update the method to handle sexOfInterest
     try {
       setLoading(true);
       // Step 1: Update the gender in the database

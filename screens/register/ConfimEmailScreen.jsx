@@ -1,10 +1,7 @@
-import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
 import {
-  Text,
   View,
   Alert,
-  TextInput,
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
@@ -12,8 +9,6 @@ import {
 import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
-import NavHeader from "../../components/NavHeader";
-import ImageChose from "../../components/forms/ImageChose";
 
 import { FIREBASE_AUTH } from "../../firebaseConfig";
 
@@ -23,8 +18,6 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/actions";
 
 const ConfimEmailRegisterScreen = ({ route, navigation }) => {
-  //   const navigation = useNavigation();
-  //   const { email, password, gender, sexOfInterest } = route.params;
   const auth = FIREBASE_AUTH;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);

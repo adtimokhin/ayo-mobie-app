@@ -1,10 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
 import {
-  Text,
   View,
-  Alert,
-  TextInput,
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
@@ -26,7 +22,6 @@ const GenderRegisterScreen = ({ route, navigation }) => {
   const [gender, setGender] = useState("");
 
   const handleLogin = () => {
-    // TODO: Handle login event
     navigation.navigate("Sex_register", { ...route.params, gender: gender });
   };
 
@@ -47,17 +42,6 @@ const GenderRegisterScreen = ({ route, navigation }) => {
             <View id="login_form" className="w-[90%]">
               <View className="w-full h-fit ">
                 <FormLabel label="What’s your gender?" />
-                {/* <TextInput
-                  className="w-full bg-[#C1ACE9] h-[40px] rounded-[14px] text-[#4E22A1] px-3"
-                  style={{ fontFamily: "lalezar" }}
-                  placeholder="EMAIL"
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  spellCheck={false}
-                  value={email}
-                  onChangeText={setEmail}
-                /> */}
                 <RadioButtonCollection
                   array={[
                     {

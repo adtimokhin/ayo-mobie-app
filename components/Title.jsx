@@ -10,7 +10,6 @@ const Title = ({ content }) => {
         >
           {content}
         </Text>
-        {/* TODO: Add the orange stripe under the text */}
       </View>
     </View>
   );

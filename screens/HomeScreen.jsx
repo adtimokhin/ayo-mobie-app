@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useLayoutEffect } from "react";
+import {  useLayoutEffect } from "react";
 import { Text, View } from "react-native";
 
 import Logo from "../assets/Loading Screen Icon.svg";

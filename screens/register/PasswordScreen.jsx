@@ -1,7 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
 import {
-  Text,
   View,
   Alert,
   TextInput,
@@ -15,8 +13,7 @@ import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
 
 const PasswordRegisterScreen = ({ route, navigation }) => {
-  //   const navigation = useNavigation();
-  const email  = route.params?.email;
+  const email = route.params?.email;
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -26,13 +23,13 @@ const PasswordRegisterScreen = ({ route, navigation }) => {
   //   State of the fields
   const [password, setPassword] = useState("");
   const handleLogin = () => {
-    // TODO: Handle login event
     if (password === "") {
       Alert.alert("Error", "Both fields are required");
     } else {
-    //   
-    // TODO: Navigate to Password_again_register
-    navigation.navigate("Password_again_register", {passwordOne: password, email: email})
+      navigation.navigate("Password_again_register", {
+        passwordOne: password,
+        email: email,
+      });
     }
   };
 
@@ -65,7 +62,11 @@ const PasswordRegisterScreen = ({ route, navigation }) => {
               </View>
             </View>
             <View className="w-full h-fit items-center justify-center pt-24">
-              <CTAButton text={"Next"} onPress={handleLogin} disabled={password === ""} />
+              <CTAButton
+                text={"Next"}
+                onPress={handleLogin}
+                disabled={password === ""}
+              />
             </View>
           </View>
         </View>

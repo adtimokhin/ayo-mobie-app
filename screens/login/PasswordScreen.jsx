@@ -1,7 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
-  Text,
   View,
   Alert,
   TextInput,

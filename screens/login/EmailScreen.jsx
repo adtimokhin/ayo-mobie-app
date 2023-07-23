@@ -12,7 +12,6 @@ import {
 import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
-import NavHeader from "../../components/NavHeader";
 import { validateEmail } from "../../utils/regex";
 
 const EmailScreen = () => {
@@ -76,7 +75,6 @@ const EmailScreen = () => {
               <Text
                 className="text-orange underline"
                 onPress={() => {
-                  // TODO: Handle navigation to the register section
                   navigation.navigate("Email_register");
                 }}
               >

@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
 import {
-  Text,
   View,
   Alert,
   TextInput,
@@ -26,7 +25,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // TODO: Handle login event
     if (email === "" || password === "") {
       Alert.alert("Error", "Both fields are required");
     } else {

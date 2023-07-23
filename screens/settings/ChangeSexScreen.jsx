@@ -1,14 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
-import {
-  Text,
-  View,
-  Alert,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
-  SafeAreaView,
-} from "react-native";
+import { View, Alert, SafeAreaView } from "react-native";
 import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
@@ -21,7 +12,6 @@ import { setUser } from "../../redux/actions";
 
 const ChangeSexScreen = ({ route, navigation }) => {
   // Hooks
-  // const navigation = useNavigation();
   const userData = useSelector((state) => state.user).user;
   const dispatch = useDispatch();
   const { currentSex } = route.params;

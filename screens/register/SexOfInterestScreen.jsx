@@ -1,10 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState } from "react";
 import {
-  Text,
   View,
-  Alert,
-  TextInput,
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
@@ -26,8 +22,6 @@ const SexOfInterestRegisterScreen = ({ route, navigation }) => {
   const [gender, setGender] = useState("");
 
   const handleLogin = () => {
-    // TODO: Handle login event
-
     navigation.navigate("Photo_register", {
       ...route.params,
       sexOfInterest: gender,
@@ -50,17 +44,6 @@ const SexOfInterestRegisterScreen = ({ route, navigation }) => {
             <View id="login_form" className="w-[90%]">
               <View className="w-full h-fit ">
                 <FormLabel label="Whose profiles do you want to see:" />
-                {/* <TextInput
-                  className="w-full bg-[#C1ACE9] h-[40px] rounded-[14px] text-[#4E22A1] px-3"
-                  style={{ fontFamily: "lalezar" }}
-                  placeholder="EMAIL"
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  spellCheck={false}
-                  value={email}
-                  onChangeText={setEmail}
-                /> */}
                 <RadioButtonCollection
                   array={[
                     {

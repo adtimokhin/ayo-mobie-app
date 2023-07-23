@@ -12,7 +12,6 @@ const PoolGallery = ({ photos }) => {
       renderItem={({ item }) => (
         <PoolPhoto uri={item.uri} liked={item.liked} onPress={() => {}} />
       )}
-      //   style={{ flexGrow: 0 }}
       showsVerticalScrollIndicator={false} // hide scroll bar
       decelerationRate="fast" // animate the snapping
     />

@@ -1,4 +1,4 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
 import * as ImagePicker from "expo-image-picker";
