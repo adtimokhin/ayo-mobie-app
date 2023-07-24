@@ -1,8 +1,17 @@
 // reducers.js
-import { SET_USER, CLEAR_USER } from '../actions/index';
+import {
+  SET_USER,
+  CLEAR_USER,
+  SET_LIKES,
+  CLEAR_LIKES,
+  SET_MATCHES,
+  CLEAR_MATCHES,
+} from "../actions/index";
 
 const initialState = {
   user: null,
+  likes: null,
+  matches: null,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -16,6 +25,26 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: null,
+      };
+    case SET_LIKES:
+      return {
+        ...state,
+        likes: action.payload,
+      };
+    case CLEAR_LIKES:
+      return {
+        ...state,
+        likes: null,
+      };
+    case SET_MATCHES:
+      return {
+        ...state,
+        matches: action.payload,
+      };
+    case CLEAR_MATCHES:
+      return {
+        ...state,
+        matches: null,
       };
     default:
       return state;
