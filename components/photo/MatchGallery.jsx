@@ -7,8 +7,8 @@ const MatchGallery = ({ photos }) => {
     <FlatList
       data={photos}
       horizontal
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <MatchPhoto uri={item.uri} />}
+      keyExtractor={(item) => item.uid}
+      renderItem={({ item }) => <MatchPhoto imageName={item.imageName} />}
       style={{ flexGrow: 0 }}
       showsHorizontalScrollIndicator={false} // hide scroll bar
       decelerationRate="fast" // animate the snapping

@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 const PoolGallery = ({ photos }) => {
   const userData = useSelector((state) => state.user).user;
 
-  const userUID = userData.uid;
-  const poolUID = userData.poolUID;
+  const userUID = userData?.uid;
+  const poolUID = userData?.poolUID;
 
   return (
     <FlatList

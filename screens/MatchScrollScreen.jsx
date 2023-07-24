@@ -1,13 +1,42 @@
 import { useNavigation } from "@react-navigation/native";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState, useEffect } from "react";
 import { SafeAreaView, View } from "react-native";
 
 import Title from "../components/Title";
 import MatchGallery from "../components/photo/MatchGallery";
 import AuthNavHeader from "../components/auth/AuthNavHeader";
+import { useSelector } from "react-redux";
+import { getUserMatches } from "../utils/poolActions";
+import { getUserData } from "../utils/userActions";
 
 const MatchScrollScreen = () => {
   const navigation = useNavigation();
+  const userData = useSelector((state) => state.user).user;
+  const [people, setPeople] = useState([]);
+
+  useEffect(() => {
+    const getMatches = async () => {
+      const poolUID = userData.poolUID;
+      const userUID = userData.uid;
+
+      const matches = (await getUserMatches(poolUID, userUID)) || [];
+      const returnValue = [];
+      for (let i = 0; i < matches.length; i++) {
+        const matchRef = matches[i];
+        let matchData;
+        if (userUID === matchRef.userOne.id) {
+          matchData = await getUserData(matchRef.userTwo.id);
+        } else {
+          matchData = await getUserData(matchRef.userOne.id);
+        }
+        returnValue.push(matchData);
+      }
+
+      setPeople(returnValue);
+    };
+
+    getMatches();
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -23,22 +52,7 @@ const MatchScrollScreen = () => {
           <Title content={"MACTHES"} />
         </View>
         <View className="w-full items-center justify-center flex-1 pb-[45px] h-fit">
-          <MatchGallery
-            photos={[
-              {
-                id: "1",
-                uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob5.jpg",
-              },
-              {
-                id: "2",
-                uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob3.jpg",
-              },
-              {
-                id: "3",
-                uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob2.jpg",
-              },
-            ]}
-          />
+          <MatchGallery photos={people} />
         </View>
       </View>
     </SafeAreaView>

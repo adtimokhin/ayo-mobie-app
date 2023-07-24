@@ -358,3 +358,21 @@ export async function addLike(poolUID, givingUserUID, receivingUserUID) {
     likes: arrayUnion(newLike),
   });
 }
+
+/** Returns Ref objects of the users that given user matched at a given pool */
+export async function getUserMatches(poolUID, userUID) {
+  const partyPoolRef = doc(FIREBASE_DB, "pools", poolUID);
+  const poolDoc = await getDoc(partyPoolRef);
+  if (poolDoc.exists()) {
+    const poolData = poolDoc.data();
+    const matches = poolData.matches || [];
+    const userMatches = matches.filter((match) => {
+      return match.userOne.id === userUID || match.userTwo.id === userUID;
+    });
+
+    return userMatches;
+  } else {
+    console.error("No such document!");
+    return [];
+  }
+}

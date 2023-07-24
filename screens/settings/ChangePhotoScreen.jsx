@@ -7,9 +7,12 @@ import NavHeader from "../../components/NavHeader";
 import ImageChose from "../../components/forms/ImageChose";
 
 // Firebase things
-import { FIREBASE_STORAGE } from "../../firebaseConfig";
+import { FIREBASE_DB, FIREBASE_STORAGE } from "../../firebaseConfig";
 import LoadingCover from "../../components/LoadingCover";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { doc, updateDoc } from "firebase/firestore";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/actions";
 
 const ChangePhotoScreen = ({ route, navigation }) => {
   //   const navigation = useNavigation();
@@ -17,6 +20,8 @@ const ChangePhotoScreen = ({ route, navigation }) => {
   const [imageUrl, setImageUrl] = useState(null);
   const [oldImageDownloadUrl, setOldImageDownloadUrl] = useState(undefined);
   const [loading, setLoading] = useState(false);
+  const userData = useSelector((state) => state.user).user;
+  const dispatch = useDispatch();
 
   //   Getting the old image
 
@@ -50,6 +55,14 @@ const ChangePhotoScreen = ({ route, navigation }) => {
       console.log("Blob >> ", blob);
       await uploadBytes(imageRef, blob, { contentType: "image/jpeg" });
 
+      await updateDoc(doc(FIREBASE_DB, "users", userUID), {
+        imageName: fileName,
+      });
+
+      const newUserData = { ...userData };
+      newUserData.imageName = fileName;
+      dispatch(setUser(newUserData));
+
       // Letting the user know that the image has been uploaded successfully
       Alert.alert("All set!", "", [
         {
@@ -60,6 +73,7 @@ const ChangePhotoScreen = ({ route, navigation }) => {
         },
       ]);
     } catch (error) {
+      console.log(error);
       Alert.alert(
         "Error",
         "Something went wrong while changing the image. Try again"

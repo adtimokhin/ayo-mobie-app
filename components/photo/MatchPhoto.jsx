@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
 import useScreenDimensions from "../../hooks/useScreenDimensions";
+import { FIREBASE_STORAGE } from "../../firebaseConfig";
+import { ref, getDownloadURL } from "firebase/storage";
 import { Image } from "react-native";
 
-const MatchPhoto = ({ uri }) => {
+const MatchPhoto = ({ imageName }) => {
   const { windowWidth, windowHeight } = useScreenDimensions();
+  const [imageURI, setImageURI] = useState("");
+
+  useEffect(() => {
+    // Getting an image from the imageName property
+    const getImageURI = async () => {
+      const imageRef = ref(FIREBASE_STORAGE, `images/${imageName}`);
+      const downloadUrl = await getDownloadURL(imageRef);
+      setImageURI(downloadUrl);
+    };
+    getImageURI();
+  }, []);
 
   return (
     <Image
@@ -15,7 +29,7 @@ const MatchPhoto = ({ uri }) => {
         borderWidth: 4,
         borderColor: "#FE6244",
       }}
-      source={{ uri: uri }}
+      source={{ uri: imageURI }}
       className="rounded-[15px]"
     />
   );
