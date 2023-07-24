@@ -8,6 +8,8 @@ import AuthNavHeader from "../components/auth/AuthNavHeader";
 import { useSelector } from "react-redux";
 import { getUserMatches } from "../utils/poolActions";
 import { getUserData } from "../utils/userActions";
+import { FIREBASE_DB } from "../firebaseConfig";
+import { onSnapshot, doc } from "@firebase/firestore";
 
 const MatchScrollScreen = () => {
   const navigation = useNavigation();
@@ -33,6 +35,39 @@ const MatchScrollScreen = () => {
       }
 
       setPeople(returnValue);
+      let firstTime = true;
+
+      // Start listening to changes made to the matches section of the pool:
+      const poolRef = doc(FIREBASE_DB, "pools", poolUID);
+      const unsubscribe = onSnapshot(poolRef, (doc) => {
+        if (firstTime) {
+          firstTime = false;
+          return;
+        }
+        const newData = doc.data();
+        const newMatch = newData.matches[newData.matches.length - 1];
+
+        // Check if the new match involves the current user
+        if (
+          newMatch.userOne.id === userUID ||
+          newMatch.userTwo.id === userUID
+        ) {
+          const otherUserUID =
+            newMatch.userOne.id === userUID
+              ? newMatch.userTwo.id
+              : newMatch.userOne.id;
+          getUserData(otherUserUID).then((otherUserData) => {
+            // Ensure the new match hasn't already been added to the people array
+            if (!people.find((person) => person.uid === otherUserData.uid)) {
+              console.log("New match added");
+              setPeople((prevPeople) => [...prevPeople, otherUserData]);
+            }
+          });
+        }
+      });
+
+      // Return the unsubscribe function to clean up the listener when the component is unmounted
+      return unsubscribe;
     };
 
     getMatches();
