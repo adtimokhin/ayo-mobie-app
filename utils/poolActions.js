@@ -242,3 +242,94 @@ export async function getPoolByPartyUID(partyUID) {
 
   return data[0]; // returns the first found. Should be only one found anyway.
 }
+
+/**
+ * Retrieve a user reference from the `currentlyPresent` field in the `partyPool` document on Firestore.
+ * This method will throw an error if the user is not present in the pool.
+ *
+ * @param {string} poolUID - The UID of the party pool.
+ * @param {string} userUID - The UID of the user.
+ * @returns {Object} - The reference to the user if they are present at the party.
+ * @throws Will throw an error if the party pool does not exist or if the user is not present in the pool.
+ */
+export function getUserRefFromPoolData(poolData, userUID) {
+  // Get the currently present users array
+  const currentlyPresent = poolData.currentlyPresent;
+
+  // Find the user in the array
+  const userRef = currentlyPresent.find((ref) => ref.id === userUID);
+
+  if (!userRef) {
+    throw new Error(`User with ID ${userUID} is not present in the pool.`);
+  }
+
+  // Return the user reference
+  return userRef;
+}
+
+/**
+ * Checks if a like with the given users exists in the likes array of a pool document in Firestore.
+ *
+ * @param {string} poolUID - The UID of the pool document to be checked.
+ * @param {string} givingUserUID - The UID of the user who is giving the like.
+ * @param {string} receivingUserUID - The UID of the user who is receiving the like.
+ * @returns {Promise<boolean>} - A promise that resolves to true if a like with the given users exists, and false otherwise.
+ * @throws Will throw an error if the pool document does not exist.
+ */
+export async function checkLikeExists(
+  poolData,
+  givingUserRef,
+  receivingUserRef
+) {
+  const likes = poolData.likes;
+
+  return likes.some(
+    (like) =>
+      like.giving.path === givingUserRef.path &&
+      like.receiving.path === receivingUserRef.path
+  );
+}
+
+export async function addLike(poolUID, givingUserUID, receivingUserUID) {
+  const partyPoolRef = doc(FIREBASE_DB, "pools", poolUID);
+
+  // Getting the data from the pool.
+  const poolData = await getPoolDataById(poolUID);
+  if (poolData == {}) {
+    console.log("Pool does not exist");
+    return;
+  }
+
+  // Seeing if the two users are present at the given party in the pool.
+  let givingUserRef;
+  let receivingUserRef;
+  try {
+    givingUserRef = getUserRefFromPoolData(poolData, givingUserUID);
+    receivingUserRef = getUserRefFromPoolData(poolData, receivingUserUID);
+  } catch (error) {
+    console.log("One or two users are not associated with this party pool.");
+    return;
+  }
+
+  // We need to check if the given like already exists
+  const likeAlreadyPresent = await checkLikeExists(
+    poolData,
+    givingUserRef,
+    receivingUserRef
+  );
+  if (likeAlreadyPresent) {
+    console.log("Like already exists");
+    return;
+  }
+
+  // Adding the like data to the pool.
+  const newLike = {
+    giving: givingUserRef,
+    receiving: receivingUserRef,
+    time: Timestamp.now(),
+  };
+
+  await updateDoc(partyPoolRef, {
+    likes: arrayUnion(newLike),
+  });
+}
