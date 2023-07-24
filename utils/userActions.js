@@ -6,6 +6,11 @@ import {
 import { doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 import { ref, deleteObject } from "firebase/storage";
+import {
+  checkLikeExists,
+  checkLikesExistsByUserData,
+  getPoolDataById,
+} from "./poolActions";
 
 /**
  * Asynchronously fetches and returns data for a specific user from the Firebase database.
@@ -204,4 +209,58 @@ export async function changeUserCurrentParty(userUID, partyUID, poolUID) {
     partyUID: partyUID,
     poolUID: poolUID,
   });
+}
+
+export function userWantsToSeeOtherUser(originalUserData, otherUserData) {
+  if (originalUserData.sexOfInterest === "other") {
+    return true;
+  }
+
+  if (otherUserData.sex === "other") {
+    return true;
+  }
+
+  return originalUserData.sexOfInterest === otherUserData.sex;
+}
+
+export async function getAllPeopleUserWantsToSee(poolUID, userData) {
+  // We will return a list of people's data of those that our user can match with.
+
+  const partyData = await getPoolDataById(poolUID);
+  const currentlyPresent = partyData.currentlyPresent || [];
+
+  const resultArray = [];
+
+  for (let i = 0; i < currentlyPresent.length; i++) {
+    const user = currentlyPresent[i];
+    if (userData.uid !== user.id) {
+      const newUserData = await getUserData(user.id);
+      if (
+        userWantsToSeeOtherUser(userData, newUserData) &&
+        userWantsToSeeOtherUser(newUserData, userData)
+      ) {
+        // TODO: Right now I will put this code into here, though code that checsks whether the user was liked or not should be in another place
+        const liked = await checkLikesExistsByUserData(
+          partyData,
+          userData.uid,
+          newUserData.uid
+        );
+        newUserData.liked = liked;
+        // TODO: Modify the return object
+        // Currently it looks like this:
+        //
+        // {"email": "adtimokhin@gmail.com",
+        //  "imageName": "4UhdFVg8FtZWb1ukZP4IuhG5IYr2.jpg",
+        //  "partyUID": "TTRfPsfobkJuKnE03UbM",
+        //  "poolUID": "5GHvlwOkken2mnZRdNaV",
+        //  "sex": "male",
+        //  "sexOfInterest": "other",
+        //  "uid": "4UhdFVg8FtZWb1ukZP4IuhG5IYr2"}
+        //
+        resultArray.push(newUserData);
+      }
+    }
+  }
+
+  return resultArray;
 }

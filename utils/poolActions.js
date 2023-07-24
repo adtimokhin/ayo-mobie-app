@@ -290,13 +290,25 @@ export async function checkLikeExists(
   );
 }
 
+export async function checkLikesExistsByUserData(
+  poolData,
+  givingUserUID,
+  receivingUserUID
+) {
+  const likes = poolData.likes;
+
+  return likes.some(
+    (like) =>
+      like.giving.id === givingUserUID && like.receiving.id === receivingUserUID
+  );
+}
 /**
  * Adds a 'like' between two users in a party pool on Firestore.
  * A 'like' is an object that contains references to the giving and receiving users and the time the 'like' was made.
  * The 'like' object is added to the 'likes' array in the pool document.
  * This function will first check if the pool exists, then check if both users are currently present at the party,
  * and finally check if the 'like' already exists before adding the new 'like'.
- * 
+ *
  * @param {string} poolUID - The UID of the pool document to be updated.
  * @param {string} givingUserUID - The UID of the user who is giving the like.
  * @param {string} receivingUserUID - The UID of the user who is receiving the like.

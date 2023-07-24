@@ -1,9 +1,23 @@
+import { useEffect, useState } from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
+import { FIREBASE_STORAGE } from "../../firebaseConfig";
+import { ref, getDownloadURL } from "firebase/storage";
 
-const PoolPhoto = ({ uri, liked, onPress }) => {
+const PoolPhoto = ({ imageName, liked, onPress }) => {
+  const [imageURI, setImageURI] = useState("");
   const likeIcon = <Icon name="plus" size={50} color="#7D4439" />;
   const likedIcon = <Icon name="check" size={50} color="#7D4439" />;
+
+  useEffect(() => {
+    // Getting an image from the imageName property
+    const getImageURI = async () => {
+      const imageRef = ref(FIREBASE_STORAGE, `images/${imageName}`);
+      const downloadUrl = await getDownloadURL(imageRef);
+      setImageURI(downloadUrl);
+    };
+    getImageURI();
+  }, []);
 
   return (
     <View className="relative">
@@ -15,15 +29,21 @@ const PoolPhoto = ({ uri, liked, onPress }) => {
           resizeMode: "cover",
           marginBottom: 30,
         }}
-        source={{ uri: uri }}
+        source={{ uri: imageURI }}
         className="rounded-[15px]"
       />
-      <TouchableOpacity
-        className="w-[50px] h-[50px] bg-[#FE6244] rounded-full absolute bottom-10 right-2 z-20"
-        onPress={onPress}
-      >
-        {liked ? likedIcon : likeIcon}
-      </TouchableOpacity>
+      {!liked ? (
+        <TouchableOpacity
+          className="w-[50px] h-[50px] bg-[#FE6244] rounded-full absolute bottom-10 right-2 z-20"
+          onPress={onPress}
+        >
+          {likeIcon}
+        </TouchableOpacity>
+      ) : (
+        <View className="w-[50px] h-[50px] bg-[#FE6244] rounded-full absolute bottom-10 right-2 z-20">
+          {likedIcon}
+        </View>
+      )}
     </View>
   );
 };

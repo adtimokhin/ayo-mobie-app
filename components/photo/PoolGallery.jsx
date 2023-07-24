@@ -8,9 +8,9 @@ const PoolGallery = ({ photos }) => {
       data={photos}
       vertical
       numColumns={1}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.uid}
       renderItem={({ item }) => (
-        <PoolPhoto uri={item.uri} liked={item.liked} onPress={() => {}} />
+        <PoolPhoto imageName={item.imageName} liked={item.liked} onPress={() => {}} />
       )}
       showsVerticalScrollIndicator={false} // hide scroll bar
       decelerationRate="fast" // animate the snapping
