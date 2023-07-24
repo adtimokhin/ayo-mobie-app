@@ -52,17 +52,6 @@ const SettingsScreen = () => {
             <ScrollView className="w-[90vw] h-[60vh]">
               <ButtonBlock title={"Profile settings"}>
                 <SettingsButton
-                  onPress={async () => {
-                    await addLike(
-                      "5GHvlwOkken2mnZRdNaV",
-                      "D2GO3nJAjBR6utVC7gC432EtYyg2",
-                      "4UhdFVg8FtZWb1ukZP4IuhG5IYr2"
-                    );
-                  }}
-                  contrast
-                  text={"Add Like"}
-                />
-                <SettingsButton
                   onPress={() => {
                     navigation.navigate("ChangePhoto", {
                       photoUrl: userData.imageName,

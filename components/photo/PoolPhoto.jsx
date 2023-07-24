@@ -6,6 +6,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 
 const PoolPhoto = ({ imageName, liked, onPress }) => {
   const [imageURI, setImageURI] = useState("");
+  const [buttonLiked, setButtonLiked] = useState(liked);
   const likeIcon = <Icon name="plus" size={50} color="#7D4439" />;
   const likedIcon = <Icon name="check" size={50} color="#7D4439" />;
 
@@ -32,10 +33,13 @@ const PoolPhoto = ({ imageName, liked, onPress }) => {
         source={{ uri: imageURI }}
         className="rounded-[15px]"
       />
-      {!liked ? (
+      {!buttonLiked ? (
         <TouchableOpacity
           className="w-[50px] h-[50px] bg-[#FE6244] rounded-full absolute bottom-10 right-2 z-20"
-          onPress={onPress}
+          onPress={() => {
+            setButtonLiked(true);
+            onPress();
+          }}
         >
           {likeIcon}
         </TouchableOpacity>
