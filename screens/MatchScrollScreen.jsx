@@ -46,6 +46,7 @@ const MatchScrollScreen = () => {
         }
         const newData = doc.data();
         const newMatch = newData.matches[newData.matches.length - 1];
+        // TODO: listen if the number of matches has changed
 
         // Check if the new match involves the current user
         if (

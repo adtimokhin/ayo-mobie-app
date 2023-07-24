@@ -28,84 +28,80 @@ const PartyPoolScreen = () => {
   }, []);
 
   // TODO: Uncomment this when done testing
-  useEffect(async () => {
+  useEffect(() => {
     // Here is where we subscribe to the changes in the list of people that are at the party.
-    // const poolUID = userData.poolUID;
-    // const poolRef = doc(FIREBASE_DB, "pools", poolUID);
+    const setPool = async () => {
+      const poolUID = userData.poolUID;
+      const peopleToShow = await getAllPeopleUserWantsToSee(poolUID, userData);
 
-    const poolUID = userData.poolUID;
-    const peopleToShow = await getAllPeopleUserWantsToSee(poolUID, userData);
+      setPeople(peopleToShow);
 
-    for (let i = 0; i < peopleToShow.length; i++) {
-      const element = peopleToShow[i];
-      console.log(element.imageName);
-    }
+      let firstTime = true;
+      let peopleAtParty = 0;
+      let peopleAtPartyCurrently = [];
 
-    setPeople(peopleToShow);
+      const poolRef = doc(FIREBASE_DB, "pools", poolUID);
+      const unsubscribe = onSnapshot(poolRef, async (doc) => {
+        const data = doc.data();
+        const currentlyPresent = data.currentlyPresent || [];
 
-    // const unsubscribe = onSnapshot(poolRef, async (doc) => {
-    //   if (loadedPeople) {
-    //     const data = doc.data();
-    //     const currentlyPresent = data.currentlyPresent || [];
-    //     console.log("Old people:", people);
+        if (firstTime) {
+          peopleAtParty = currentlyPresent.length;
+          // Setting peopleAtPartyCurrently to be a list of uids of users at the party
+          for (let i = 0; i < peopleAtParty; i++) {
+            const userAtParty = currentlyPresent[i];
+            peopleAtPartyCurrently.push(userAtParty.id);
+          }
 
-    //     if (people.length < currentlyPresent.length) {
-    //       // New user was added
-    //       const newUser = currentlyPresent[currentlyPresent.length - 1];
-    //       const newUserData = await getUserData(newUser.id);
-    //       // console.log("New user data:", newUserData);
+          firstTime = false;
+          return;
+        }
 
-    //       // Check if the two users want to see one another
-    //       if (
-    //         userWantsToSeeOtherUser(userData, newUserData) &&
-    //         userWantsToSeeOtherUser(newUserData, userData)
-    //       ) {
-    //         // Add user to the list of people
-    //         const newPerson = {
-    //           id: newUserData.uid,
-    //           // picName: newUserData.imageName, // TODO: Switch back to using this image after done with testing
-    //           uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob5.jpg",
-    //           liked: false,
-    //         };
+        if (peopleAtParty < currentlyPresent.length) {
+          peopleAtParty = currentlyPresent.length;
+          // peopleAtPartyCurrently = currentlyPresent;
+          // New user was added
+          const newUser = currentlyPresent[currentlyPresent.length - 1];
+          peopleAtPartyCurrently.push(newUser.id);
+          const newUserData = await getUserData(newUser.id);
+          // Check if the two users want to see one another
+          if (
+            userWantsToSeeOtherUser(userData, newUserData) &&
+            userWantsToSeeOtherUser(newUserData, userData)
+          ) {
+            // Add user to the list of people
+            // TODO: Need a method that will sort the list of people in the order that we want
+            setPeople((prevPeople) => [...prevPeople, newUserData]);
+          }
+        } else if (peopleAtParty > currentlyPresent.length) {
+          const usersUIDs = [];
+          for (let i = 0; i < currentlyPresent.length; i++) {
+            const element = currentlyPresent[i];
+            usersUIDs.push(element.id);
+          }
 
-    //         console.log(
-    //           "Adding a new person to the list of people:",
-    //           newPerson
-    //         );
+          // Someone left the party pool.
+          for (let i = 0; i < peopleAtPartyCurrently.length; i++) {
+            const oldPartyMemberUID = peopleAtPartyCurrently[i];
+            if (!usersUIDs.includes(oldPartyMemberUID)) {
+              setPeople((prev) =>
+                prev.filter((person) => {
+                  return person.uid !== oldPartyMemberUID;
+                })
+              );
+              break;
+            }
+          }
 
-    //         // TODO: Need a method that will sort the list of people in the order that we want
-    //         const newList = [newPerson, ...people];
+          peopleAtParty = currentlyPresent.length;
+          peopleAtPartyCurrently = usersUIDs;
+        }
+      });
 
-    //         setPeople(newList);
-    //       }
-    //     }
+      return unsubscribe;
+    };
 
-    //     console.log("Updated pool");
-    //     console.log(
-    //       "There are " + currentlyPresent.length + " people currently"
-    //     );
-    //   } else {
-    //     // const poolUID = userData.poolUID;
-    //     // const peopleToShow = await getAllPeopleUserWantsToSee(
-    //     //   poolUID,
-    //     //   userData
-    //     // );
-
-    //     // setPeople([
-    //     //   {
-    //     //     id: "1",
-    //     //     uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob5.jpg",
-    //     //     liked: false,
-    //     //   },
-    //     //   {
-    //     //     id: "2",
-    //     //     uri: "https://adtimokhin.github.io/family_photos_json_server/images/jacob/jacob3.jpg",
-    //     //     liked: false,
-    //     //   },
-    //     // ]);
-    //     // setLoadedPeople(true);
-    //   }
-    // });
+    setPool();
   }, []);
 
   return (
