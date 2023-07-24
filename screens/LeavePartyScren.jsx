@@ -38,7 +38,7 @@ const LeavePartyScren = () => {
       await removeUserFromActivePoolByUserUID(poolData.uid, userData.uid);
 
       // Step 2: Remove data from the user doc that they are registered at a party
-      await changeUserCurrentParty(userData.uid, null);
+      await changeUserCurrentParty(userData.uid, null, null);
 
       // Step 3: Update the time user left the party in the pool
       await updateTimeUserLeft(poolData.uid, userData.uid);

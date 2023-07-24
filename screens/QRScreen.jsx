@@ -68,11 +68,12 @@ const QRScreen = () => {
       await updateUserAttendedPoolByUserUID(poolUID, userData.uid);
 
       //  Step 4: Update user object to store data about what party they are at
-      await changeUserCurrentParty(userData.uid, partyUID);
+      await changeUserCurrentParty(userData.uid, partyUID, poolUID);
 
       // Step 5: Update user object stored in redux storage
       const newUserData = { ...userData };
       newUserData.partyUID = partyUID;
+      newUserData.poolUID = poolUID;
       dispatch(setUser(newUserData));
       //  Step 6: Direct user to the pool screen
       navigation.navigate("JoinPartyStack");

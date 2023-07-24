@@ -198,9 +198,10 @@ export async function changeUserSexOfInterest(userUID, value) {
  *   console.error("Failed to update user 'partyUID': " + error.message);
  * }
  */
-export async function changeUserCurrentParty(userUID, partyUID) {
+export async function changeUserCurrentParty(userUID, partyUID, poolUID) {
   const userDoc = doc(FIREBASE_DB, "users", userUID);
   await updateDoc(userDoc, {
     partyUID: partyUID,
+    poolUID: poolUID,
   });
 }
