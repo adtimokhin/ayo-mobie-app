@@ -6,6 +6,7 @@ import Logo from "../assets/Loading Screen Icon.svg";
 import useScreenDimensions from "../hooks/useScreenDimensions";
 import CTAButton from "../components/CTAButton";
 import Title from "../components/Title";
+import { Linking } from "react-native";
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
@@ -38,22 +39,49 @@ const WelcomeScreen = () => {
                 navigation.navigate("Email_register");
               }}
             />
+            <Text
+              style={{ fontFamily: "lalezar" }}
+              className="text-[20px] text-bone "
+            >
+              OR
+            </Text>
+            <CTAButton
+              text={"Login"}
+              onPress={() => {
+                navigation.navigate("Email_login");
+              }}
+            />
           </View>
         </View>
         <View className="absolute bottom-1">
           <Text
             style={{ fontFamily: "lalezar" }}
-            className="text-[20px] text-bone "
+            className="text-[14px] text-bone/70 text-center "
           >
-            Have an account?{" "}
+            By continuing you agree to{" "}
             <Text
-              className="text-orange underline"
+              className="text-orange/70 underline"
               onPress={() => {
-                navigation.navigate("Email_login");
+                Linking.openURL(
+                  "https://github.com/adtimokhin/ayo-web/blob/main/terms.txt"
+                );
               }}
             >
-              Login!
-            </Text>
+              terms and conditions
+            </Text>{" "}
+            and{" "}
+            <Text
+              className="text-orange/70 underline"
+              onPress={() => {
+                Linking.openURL(
+                  "https://github.com/adtimokhin/ayo-web/blob/main/privacy.txt"
+                );
+              }}
+            >
+              {" "}
+              privacy policy
+            </Text>{" "}
+            of the app
           </Text>
         </View>
       </View>

@@ -178,8 +178,7 @@ const SettingsScreen = () => {
               {/* Terms and conditions text */}
               <View className="w-full flex-row justify-between h-fit">
                 <TouchableOpacity
-                  onPress={async () => {
-                    // TODO: Change this link to the real terms and conditions file
+                  onPress={() => {
                     Linking.openURL(
                       "https://github.com/adtimokhin/ayo-web/blob/main/terms.txt"
                     );
@@ -193,10 +192,9 @@ const SettingsScreen = () => {
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={async () => {
-                    // TODO: Change this link to the real Privacy Policy file
+                  onPress={() => {
                     Linking.openURL(
-                      "https://github.com/adtimokhin/ayo-web/blob/main/terms.txt"
+                      "https://github.com/adtimokhin/ayo-web/blob/main/privacy.txt"
                     );
                   }}
                 >

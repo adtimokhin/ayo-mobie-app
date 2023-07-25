@@ -26,10 +26,11 @@ export default useScreenDimensions = () => {
       windowHeight = window.height;
     };
 
-    Dimensions.addEventListener("change", onChange);
+    const subscirption = Dimensions.addEventListener("change", onChange);
 
     return () => {
-      Dimensions.removeEventListener("change", onChange);
+      subscirption.remove();
+      // Dimensions.removeEventListener("change", onChange);
     };
   }, []);
 
