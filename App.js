@@ -75,12 +75,15 @@ function NotJoinPartyStack() {
           borderTopWidth: 0,
           flex: 1,
         },
+        tabBarActiveTintColor: "#4E22A1",
+        tabBarInactiveTintColor: "#8D6EC9",
+        tabBarShowLabel: true,
       })}
-      tabBarOptions={{
-        activeTintColor: "#4E22A1",
-        inactiveTintColor: "#8D6EC9",
-        showLabel: true,
-      }}
+      // tabBarOptions={{
+      //   activeTintColor: "#4E22A1",
+      //   inactiveTintColor: "#8D6EC9",
+      //   showLabel: true,
+      // }}
     >
       <Tab.Screen name="Map" component={MapScreen} />
       <Tab.Screen name="QR" component={QRScreen} />
@@ -132,16 +135,10 @@ function JoinPartyStack() {
           borderTopWidth: 0,
           flex: 1,
         },
+        tabBarActiveTintColor: "#4E22A1",
+        tabBarInactiveTintColor: "#8D6EC9",
+        tabBarShowLabel: true,
       })}
-      tabBarOptions={{
-        // Old styles
-        // activeTintColor: "#FE6244",
-        // inactiveTintColor: "#FCFBFC",
-        // showLabel: false,
-        activeTintColor: "#4E22A1",
-        inactiveTintColor: "#8D6EC9",
-        showLabel: true,
-      }}
     >
       <Tab.Screen name="Match" component={MatchScrollScreen} />
       <Tab.Screen name="PartyPool" component={PartyPoolScreen} />

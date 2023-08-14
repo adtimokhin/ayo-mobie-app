@@ -11,7 +11,7 @@ const AuthNavHeader = ({ text }) => {
       {text && (
         <Text
           className="text-bone absolute top-1 text-[20px] left-3"
-          style={{ fontFamily: "lalezar", letterSpacing: "-1%" }}
+          style={{ fontFamily: "lalezar", letterSpacing: 0 }}
         >
           {text}
         </Text>
