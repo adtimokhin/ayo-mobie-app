@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Alert, SafeAreaView, View } from "react-native";
+import { ActivityIndicator, Alert, SafeAreaView, View } from "react-native";
 
 import Map from "../components/map/Map";
 
@@ -54,8 +54,16 @@ const MapScreen = () => {
       <AuthNavHeader text="PARTIES AROUND YOU" />
       {/* TODO: Go around and remove the Title component */}
       <View className="flex-1 items-center ">
-        <View className="w-[100vw] h-[100vh] bg-black">
-          {userPosition && <Map userCoord={userPosition}></Map>}
+        <View className="w-[100vw] h-[100vh] bg-[#4E22A1]">
+          {userPosition ? (
+            <Map userCoord={userPosition}></Map>
+          ) : (
+            <ActivityIndicator
+              color="#C1ACE9"
+              size="large"
+              className="absolute top-[40vh] left-1/2"
+            />
+          )}
         </View>
       </View>
     </SafeAreaView>

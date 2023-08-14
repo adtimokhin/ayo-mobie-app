@@ -35,7 +35,8 @@
     "redux": "^4.2.1",
     "tailwindcss": "3.3.2",
     "expo-location": "~15.1.1",
-    "expo-notifications": "~0.18.1"
+    "expo-notifications": "~0.18.1",
+    "expo-device": "~5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
