@@ -73,6 +73,7 @@ module.exports = (async () => {
 
   // Add 'svg' and 'ttf' extensions to assetExts
   config.resolver.assetExts.push("ttf");
+  config.resolver.sourceExts.push('cjs');
 
   return config;
 })();
