@@ -1,12 +1,19 @@
 import { Text, View } from "react-native";
 
+// Fixed
+
 const Title = ({ content }) => {
   return (
-    <View className="w-full items-center justify-center">
-      <View className="items-center justify-center">
+    <View
+      style={{
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Text
-          style={{ fontFamily: "lalezar", letterSpacing: 0 }}
-          className="text-bone text-[80px]"
+          style={{ fontFamily: "lalezar", letterSpacing: 0, color:"#FCFBFC", fontSize: 80 }}
         >
           {content}
         </Text>

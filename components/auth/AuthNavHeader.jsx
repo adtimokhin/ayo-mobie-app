@@ -2,30 +2,55 @@ import { useNavigation } from "@react-navigation/native";
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
+// Fixed
+
 const AuthNavHeader = ({ text }) => {
   const navigation = useNavigation();
   const myIcon = <Icon name="settings" size={29} color="#fff" />;
 
   return (
-    <View className=" bg-transparent w-full h-[30] justify-center ml-4 relative mb-2">
+    <View
+      style={{
+        width: "100%",
+        height: 32,
+        justifyContent: "center",
+        marginLeft: 4,
+        position: "relative",
+        marginBottom: 2,
+      }}
+    >
       {text && (
         <Text
-          className="text-bone absolute top-1 text-[20px] left-3"
-          style={{ fontFamily: "lalezar", letterSpacing: 0 }}
+          style={{
+            fontFamily: "lalezar",
+            letterSpacing: 0,
+            color: "#FCFBFC",
+            position: "absolute",
+            top: 1,
+            fontSize: 20,
+            left: 3,
+          }}
         >
           {text}
         </Text>
       )}
 
       <TouchableOpacity
-        className="flex-row w-fit justify-end pr-4"
+        style={{
+          justifyContent: "right",
+          paddingRight: 4,
+        }}
         onPress={() => {
           navigation.navigate("Settings");
         }}
       >
         <Text
-          className="text-white text-2xl text-right"
-          style={{ fontFamily: "lalezar" }}
+          style={{
+            fontFamily: "lalezar",
+            color: "white",
+            fontSize: 24,
+            textAlign: "right",
+          }}
         >
           {myIcon}
         </Text>

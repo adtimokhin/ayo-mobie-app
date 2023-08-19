@@ -23,6 +23,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeUserCurrentParty } from "../utils/userActions";
 import { setUser } from "../redux/actions";
 
+
+// Fixed
+
 const QRScreen = () => {
   // Hooks
   const [startScan, setStartScan] = useState(false);
@@ -95,17 +98,30 @@ const QRScreen = () => {
   }, []);
 
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: "#5F29C7" }}>
+      {/* Component appears only when the screen switches to the loading state */}
       {loading && <LoadingCover />}
-      <SafeAreaView className="items-center justify-center bg-purple w-full h-full">
-        <AuthNavHeader />
-        <View className="flex-1 items-center ">
-          <View className="w-full h-fit">
-            <Title content={"SCAN QR"} />
-          </View>
+      {/* Main Content of the Page */}
+      <SafeAreaView style={{ flex: 1 }}>
+        <AuthNavHeader/>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+          }}
+        >
+          {/* Title of the page */}
+          <Title content={"SCAN QR"} />
 
+          {/* QR components */}
           {startScan ? (
-            <View className="w-[100vw] items-center flex-1">
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
               <QRReader
                 onFail={() => {
                   setStartScan(false);
@@ -114,7 +130,11 @@ const QRScreen = () => {
                   handleAddUserToPool(poolUID);
                 }}
               />
-              <View className="h-[30px]"></View>
+              <View
+                style={{
+                  height: 30,
+                }}
+              ></View>
               <CTAButton
                 text={"Stop Scanning"}
                 onPress={() => {
@@ -123,7 +143,14 @@ const QRScreen = () => {
               />
             </View>
           ) : (
-            <View className="w-full items-center absolute top-1/2 -translate-y-[100%]">
+            <View
+              style={{
+                width: "100%",
+                position: "absolute",
+                top: "50%",
+                alignItems: "center",
+              }}
+            >
               <CTAButton
                 text={"Join Party"}
                 onPress={() => {
@@ -132,8 +159,6 @@ const QRScreen = () => {
               />
             </View>
           )}
-
-          {/* TODO: Add text that would expplain that user needs to scan QR */}
         </View>
       </SafeAreaView>
     </View>

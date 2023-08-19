@@ -3,6 +3,8 @@ import { Alert, View } from "react-native";
 
 import { BarCodeScanner } from "expo-barcode-scanner";
 
+// Fixed
+
 const QRReader = ({ onFail, onQRScanned }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
@@ -31,13 +33,22 @@ const QRReader = ({ onFail, onQRScanned }) => {
   };
 
   return (
-    <View className="w-[80vw] h-[85vw] bg-orange">
+    <View
+      style={{
+        width: "80%",
+        aspectRatio: 1.176, // 85vw / 80vw ≈ 1.176
+        backgroundColor: "#FE6244",
+      }}
+    >
       {scanned ? (
         <></>
       ) : (
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-          className="w-full h-full"
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
         />
       )}
     </View>
