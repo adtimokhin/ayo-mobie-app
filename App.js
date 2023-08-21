@@ -15,7 +15,6 @@ import GenderRegisterScreen from "./screens/register/GenderScreen";
 import SexOfInterestRegisterScreen from "./screens/register/SexOfInterestScreen";
 import PhotoRegisterScreen from "./screens/register/PhotoScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
-import HomeScreen from "./screens/HomeScreen";
 import ConfimEmailRegisterScreen from "./screens/register/ConfimEmailScreen";
 import QRScreen from "./screens/QRScreen";
 import MapScreen from "./screens/MapScreen";
@@ -199,7 +198,6 @@ export default function App() {
             <Stack.Screen name="Email_login" component={EmailScreen} />
             <Stack.Screen name="Password_login" component={PasswordScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="ChangeGender" component={ChangeSexScreen} />
             <Stack.Screen
               name="ChangeSexOfInterest"
