@@ -1,13 +1,22 @@
 import { Text, View } from "react-native";
 
+// Fixed
+
 const ButtonBlock = (props) => {
   const title = props.title || "No title";
   return (
-    <View className="w-full justify-center items-center mb-8">
-      <Text className="text-bone text-[32px]" style={{ fontFamily: "lalezar" }}>
+    <View
+      style={{
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 8,
+      }}
+    >
+      <Text style={{ fontFamily: "lalezar", fontSize: 32, color: "#FCFBFC" }}>
         {title}
       </Text>
-      <View className="w-full">{props.children}</View>
+      <View style={{ width: "100%" }}>{props.children}</View>
     </View>
   );
 };

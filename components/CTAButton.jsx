@@ -30,9 +30,6 @@ const CTAButton = ({ text, onPress, disabled }) => {
     },
   };
 
-  const textClasses = `w-fit text-[24px] ${
-    disabled ? "text-bone/50" : "text-bone"
-  }`;
 
   return (
     <TouchableOpacity
