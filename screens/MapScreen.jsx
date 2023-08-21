@@ -3,11 +3,12 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Alert, SafeAreaView, View } from "react-native";
 
 import Map from "../components/map/Map";
-
 import AuthNavHeader from "../components/auth/AuthNavHeader";
-import { useSelector } from "react-redux";
 
+import { useSelector } from "react-redux";
 import * as Location from "expo-location";
+
+// Fixed
 
 const MapScreen = () => {
   const navigation = useNavigation();
@@ -50,19 +51,47 @@ const MapScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView className="flex-1 w-full h-full items-center justify-center bg-purple">
+    <SafeAreaView
+      style={{
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#5F29C7",
+      }}
+    >
       <AuthNavHeader text="PARTIES AROUND YOU" />
       {/* TODO: Go around and remove the Title component */}
-      <View className="flex-1 items-center ">
-        <View className="w-[100vw] h-[100vh] bg-[#4E22A1]">
+
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#4E22A1",
+          }}
+        >
           {userPosition ? (
             <Map userCoord={userPosition}></Map>
           ) : (
             <ActivityIndicator
-              color="#C1ACE9"
-              size="large"
-              className="absolute top-[40vh] left-1/2"
-            />
+            color="#C1ACE9"
+            size="large"
+            style={{
+              position: "absolute",
+              top: "42%", // Vertically centering
+              left: "48%", // Horizontally centering
+            }}
+          />
           )}
         </View>
       </View>

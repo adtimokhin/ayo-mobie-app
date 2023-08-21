@@ -3,6 +3,9 @@ import MapMarker from "./MapMarker";
 import { useEffect, useState } from "react";
 import { getAllActivePartiesData } from "../../utils/partyActions";
 import { convertFirebaseTimeToString } from "../../utils/time";
+
+// Fixed
+
 const Map = ({ userCoord }) => {
   // userCoord is an object that has two values: latitude and longitude
 
