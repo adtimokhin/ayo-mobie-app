@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect, useLayoutEffect } from "react";
 import { View } from "react-native";
 
-// import Logo from "../assets/Loading Screen Icon.svg";
 import useScreenDimensions from "../hooks/useScreenDimensions";
 
 import { onAuthStateChanged } from "firebase/auth";
@@ -13,10 +12,12 @@ import { getUserData } from "../utils/userActions";
 
 import Svg, { Path } from "react-native-svg";
 
+// Fixed
+
 const LoadingScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { windowWidth, windowHeight } = useScreenDimensions();
+  const { windowWidth } = useScreenDimensions();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -49,7 +50,14 @@ const LoadingScreen = () => {
   }, [dispatch]);
 
   return (
-    <View className="flex-1 items-center justify-center bg-purple">
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#5F29C7",
+      }}
+    >
       <Svg
         width={windowWidth * 0.8}
         height="176"
@@ -74,7 +82,6 @@ const LoadingScreen = () => {
           fill="#FE6244"
         />
       </Svg>
-      {/* <Logo width={windowWidth * 0.8} /> */}
     </View>
   );
 };
