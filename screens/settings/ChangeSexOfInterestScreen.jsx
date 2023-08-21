@@ -10,6 +10,8 @@ import { changeUserSexOfInterest } from "../../utils/userActions";
 import LoadingCover from "../../components/LoadingCover";
 import { setUser } from "../../redux/actions";
 
+// Fixed
+
 const ChangeSexOfInterestScreen = ({ route, navigation }) => {
   // Hooks
   const userData = useSelector((state) => state.user).user;
@@ -58,22 +60,41 @@ const ChangeSexOfInterestScreen = ({ route, navigation }) => {
   return (
     <View>
       {loading && <LoadingCover />}
-      <SafeAreaView className="w-full h-full bg-purple">
+      <SafeAreaView
+        style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
+      >
         <NavHeader
           onPress={() => {
             navigation.goBack();
           }}
         />
-        <View className=" bg-transparent w-full h-[50] justify-center pl-1"></View>
-        <View className="flex-1 items-center ">
-          <View className="w-full h-fit">
+        <View
+          style={{
+            width: "100%",
+            height: 50,
+            justifyContent: "center",
+            paddingLeft: 4,
+          }}
+        ></View>
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row", // Flex direction to ensure content fits horizontally
+            }}
+          >
             <Title content={"INTERESTS"} />
           </View>
-          <View className="w-full items-center justify-center">
-            <View id="login_form" className="w-[90%]">
-              <View className="w-full h-fit ">
+          <View
+            style={{
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <View id="login_form" style={{ width: "90%" }}>
+              <View style={{ width: "100%" }}>
                 <FormLabel label="Select Whose profiles do you want to see" />
-
                 <RadioButtonCollection
                   array={[
                     {
@@ -97,7 +118,14 @@ const ChangeSexOfInterestScreen = ({ route, navigation }) => {
                 />
               </View>
             </View>
-            <View className="w-full h-fit items-center justify-center pt-24">
+            <View
+              style={{
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingTop: 96,
+              }}
+            >
               <CTAButton
                 text={"Change Interest"}
                 onPress={handleChangeGender}

@@ -1,6 +1,8 @@
 import { View } from "react-native";
 import RadioButton from "./RadioButton";
 
+// Fixed
+
 const RadioButtonCollection = ({ array, onPress, activeItem }) => {
   const items = [];
   for (let i = 0; i < array.length; i++) {
@@ -16,7 +18,7 @@ const RadioButtonCollection = ({ array, onPress, activeItem }) => {
     );
   }
 
-  return <View className="space-y-4">{items}</View>;
+  return <View>{items}</View>;
 };
 
 export default RadioButtonCollection;

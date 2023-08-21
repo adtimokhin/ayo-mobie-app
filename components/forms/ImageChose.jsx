@@ -5,6 +5,8 @@ import * as ImagePicker from "expo-image-picker";
 import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 
+// Fixed
+
 const ImageChose = ({ setImageUrl, imageCover, loading }) => {
   const [imageSource, setImageSource] = useState(null);
 
@@ -51,32 +53,63 @@ const ImageChose = ({ setImageUrl, imageCover, loading }) => {
 
   return (
     <TouchableOpacity
-      className="w-full bg-[#C1ACE9] h-full rounded-[15px] relative"
+      style={{
+        width: "100%",
+        backgroundColor: "#C1ACE9",
+        height: "100%",
+        borderRadius: 15,
+        position: "relative",
+      }}
       onPress={handleChoosePhoto}
     >
       {loading && (
         <ActivityIndicator
-          size={20}
+          size={29}
           color="#FE6244"
-          className="absolute top-1/2 left-1/2"
-          style={{ transform: [{ translateX: -10 }, { translateY: -10 }] }}
+          style={{
+            transform: [{ translateX: -10 }, { translateY: -10 }],
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+          }}
         />
       )}
       {imageCover && (
         <Image
           source={{ uri: imageCover }}
-          style={{ width: "100%", height: "100%" }}
-          className="z-0 rounded-[15px] absolute top-0"
+          style={{
+            width: "100%",
+            height: "100%",
+            zIndex: 0,
+            borderRadius: 15,
+            position: "absolute",
+            top: 0,
+          }}
         />
       )}
-      <View className="w-[30px] h-[30px] bg-orange rounded-full absolute bottom-1 right-1 z-20">
+      <View
+        style={{
+          width: 30,
+          height: 30,
+          backgroundColor: "#FE6244",
+          borderRadius: 15,
+          position: "absolute",
+          bottom: 1,
+          right: 1,
+          zIndex: 20,
+        }}
+      >
         {imageSource ? successIcon : myIcon}
       </View>
       {imageSource && (
         <Image
           source={{ uri: imageSource }}
-          style={{ width: "100%", height: "100%" }}
-          className="z-10 rounded-[15px]"
+          style={{
+            width: "100%",
+            height: "100%",
+            zIndex: "10",
+            borderRadius: 15,
+          }}
         />
       )}
     </TouchableOpacity>

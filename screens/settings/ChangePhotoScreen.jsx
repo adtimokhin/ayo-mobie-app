@@ -14,6 +14,8 @@ import { doc, updateDoc } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/actions";
 
+// Fixed
+
 const ChangePhotoScreen = ({ route, navigation }) => {
   //   const navigation = useNavigation();
   const { photoUrl, userUID } = route.params;
@@ -86,23 +88,43 @@ const ChangePhotoScreen = ({ route, navigation }) => {
   return (
     <View>
       {loading && <LoadingCover />}
-      <SafeAreaView className="w-full h-full bg-purple">
+      <SafeAreaView
+        style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
+      >
         <NavHeader
           onPress={() => {
             navigation.goBack();
           }}
         />
-        <View className="flex-1 items-center ">
-          <View className="w-full h-fit">
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row", // Flex direction to ensure content fits horizontally
+            }}
+          >
             <Title content={"PHOTO"} />
           </View>
-          <View className="w-full items-center justify-center">
-            <View id="login_form" className="w-[90%]">
-              <View className="w-full h-fit ">
+          <View
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View id="login_form" style={{ width: "90%" }}>
+              <View style={{ width: "100%" }}>
                 <FormLabel label="What photo of you will others see?" />
               </View>
             </View>
-            <View className="w-[60%] h-[300px] items-center justify-center ">
+            <View
+              style={{
+                width: "60%",
+                height: 300,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               {oldImageDownloadUrl && (
                 <ImageChose
                   setImageUrl={setImageUrl}
@@ -111,7 +133,15 @@ const ChangePhotoScreen = ({ route, navigation }) => {
                 />
               )}
             </View>
-            <View className="w-full h-fit items-center justify-center pt-24">
+            <View
+              style={{
+                width: "100%",
+                flexDirection: "row", // Flex direction to ensure content fits horizontally
+                paddingTop: 24, // Adjust this value based on your needs
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <CTAButton
                 text={"Change Photo"}
                 onPress={handleChangePhoto}
