@@ -2,7 +2,7 @@
 
 PartyDate is a mobile app built using React Native and Expo that aims to connect people looking to meet others at parties and bars. This app provides a platform for users to find potential matches in social settings, facilitating connections and conversations in real-time.
 
-![PartyDate Screenshot](screenshot.png)
+![PartyDate Screenshot](https://adtimokhin.github.io/logo/AYO%20README%20PHOTO.jpg)
 
 ## Table of Contents
 
