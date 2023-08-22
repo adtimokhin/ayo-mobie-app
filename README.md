@@ -2,7 +2,6 @@
 
 PartyDate is a mobile app built using React Native and Expo that aims to connect people looking to meet others at parties and bars. This app provides a platform for users to find potential matches in social settings, facilitating connections and conversations in real-time.
 
-![PartyDate Screenshot](https://adtimokhin.github.io/logo/AYO%20README%20PHOTO.jpg)
 
 ## Table of Contents
 
@@ -36,27 +35,27 @@ Before you begin, make sure you have the following software installed:
 
 2. Navigate to the project directory:
 
-   \`\`\`bash
+   ```bash
    cd ayo-mobie-app
-   \`\`\`
+   ```
 
 3. Install the required npm packages:
 
-   \`\`\`bash
+  ```bash
    npm install
-   \`\`\`
+   ```
 
 ## Usage
 
 To launch the AYO The One app on your machine, follow these steps:
 
-1. Ensure you are in the project directory (\`ayo-mobie-app\`).
+1. Ensure you are in the project directory (`ayo-mobie-app`).
 
 2. Run the following command to start the Expo development server:
 
-   \`\`\`bash
+   ```bash
    npx expo start
-   \`\`\`
+   ```
 
 3. A web page will open in your browser displaying a QR code. You can use this QR code to open the app on your physical device using the Expo Go app or launch the app in an Android or iOS simulator.
 
@@ -87,9 +86,9 @@ To launch the AYO The One app on your machine, follow these steps:
 Contributions to PartyDate are welcome! To contribute, follow these steps:
 
 1. Fork the repository.
-2. Create a new branch for your feature or bug fix: \`git checkout -b feature-name\`
-3. Make your changes and commit them: \`git commit -m "Add feature"\`
-4. Push your changes to your fork: \`git push origin feature-name\`
+2. Create a new branch for your feature or bug fix: `git checkout -b feature-name`
+3. Make your changes and commit them: `git commit -m "Add feature"`
+4. Push your changes to your fork: `git push origin feature-name`
 5. Create a pull request detailing your changes.
 
 Please ensure your code follows the project's coding conventions and has appropriate test coverage.
