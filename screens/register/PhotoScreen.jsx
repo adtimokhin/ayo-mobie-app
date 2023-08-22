@@ -27,6 +27,9 @@ import {
 } from "../../firebaseConfig";
 import LoadingCover from "../../components/LoadingCover";
 
+// Fixed
+// TODO: handle possible rejections from firebase.
+
 const PhotoRegisterScreen = ({ route, navigation }) => {
   //   const navigation = useNavigation();
   const { email, password, gender, sexOfInterest } = route.params;
@@ -103,27 +106,49 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
   return (
     <View>
       {loading && <LoadingCover />}
-      <SafeAreaView className="w-full h-full bg-purple">
+      <SafeAreaView
+        style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
+      >
         <NavHeader
           onPress={() => {
             navigation.navigate("Sex_register");
           }}
         />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View className="flex-1 items-center ">
-            <View className="w-full h-fit">
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <View style={{ width: "100%" }}>
               <Title content={"PHOTO"} />
             </View>
-            <View className="w-full items-center justify-center">
-              <View id="login_form" className="w-[90%]">
-                <View className="w-full h-fit ">
+            <View
+              style={{
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <View style={{ width: "90%" }}>
+                <View style={{ width: "100%" }}>
                   <FormLabel label="What photo of you will others see?" />
                 </View>
               </View>
-              <View className="w-[60%] h-[300px] items-center justify-center ">
+              <View
+                style={{
+                  width: "60%",
+                  height: 300,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <ImageChose setImageUrl={setImageUrl} />
               </View>
-              <View className="w-full h-fit items-center justify-center pt-24">
+              <View
+                style={{
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingTop: 96,
+                }}
+              >
                 <CTAButton
                   text={"Create an account"}
                   onPress={handleAccountCreation}

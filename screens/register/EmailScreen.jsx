@@ -13,6 +13,9 @@ import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
 
+// Fixed
+// TODO: Add email regex validation support.
+
 const EmailRegisterScreen = () => {
   const navigation = useNavigation();
   useLayoutEffect(() => {
@@ -33,20 +36,35 @@ const EmailRegisterScreen = () => {
   };
 
   return (
-    <SafeAreaView className="w-full h-full bg-purple">
-      <View className=" bg-transparent w-full h-[50] justify-center pl-1"></View>
+    <SafeAreaView
+      style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
+    >
+      
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex-1 items-center ">
-          <View className="w-full h-fit">
+        <View style={{ flex: 1, alignContent: "center" }}>
+          <View style={{ width: "100%" }}>
             <Title content={"EMAIL"} />
           </View>
-          <View className="w-full items-center justify-center">
-            <View id="login_form" className="w-[90%]">
-              <View className="w-full h-fit ">
+          <View
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View id="login_form" style={{ width: "90%" }}>
+              <View style={{ width: "100%" }}>
                 <FormLabel label="What’s your email?" />
                 <TextInput
-                  className="w-full bg-[#C1ACE9] h-[40px] rounded-[14px] text-[#4E22A1] px-3"
-                  style={{ fontFamily: "lalezar" }}
+                  style={{
+                    fontFamily: "lalezar",
+                    width: "100%",
+                    backgroundColor: "#C1ACE9",
+                    height: 40,
+                    borderRadius: 14,
+                    color: "#4E22A1",
+                    paddingHorizontal: 12,
+                  }}
                   placeholder="EMAIL"
                   keyboardType="email-address"
                   autoCapitalize="none"
@@ -57,7 +75,14 @@ const EmailRegisterScreen = () => {
                 />
               </View>
             </View>
-            <View className="w-full h-fit items-center justify-center pt-24">
+            <View
+              style={{
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingTop: 96,
+              }}
+            >
               <CTAButton
                 text={"Next"}
                 onPress={handleLogin}
@@ -65,14 +90,19 @@ const EmailRegisterScreen = () => {
               />
             </View>
           </View>
-          <View className="absolute bottom-1">
+          <View style={{ position: "absolute", bottom: 3, width: "100%" }}>
             <Text
-              style={{ fontFamily: "lalezar" }}
-              className="text-[20px] text-bone "
+              style={{
+                fontFamily: "lalezar",
+                fontSize: 20,
+                color: "#FCFBFC",
+                width: "100%",
+                textAlign: "center",
+              }}
             >
-              Have an account?{" "}
+              Already have an account?{" "}
               <Text
-                className="text-orange underline"
+                style={{ color: "#FE6244", textDecorationLine: "underline" }}
                 onPress={() => {
                   navigation.navigate("Email_login");
                 }}

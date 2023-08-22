@@ -11,6 +11,8 @@ import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
 import RadioButtonCollection from "../../components/forms/RadioButtonCollection";
 
+// Fixed
+
 const GenderRegisterScreen = ({ route, navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -26,21 +28,28 @@ const GenderRegisterScreen = ({ route, navigation }) => {
   };
 
   return (
-    <SafeAreaView className="w-full h-full bg-purple">
+    <SafeAreaView
+      style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
+    >
       <NavHeader
         onPress={() => {
-          navigation.navigate("Password_again_register");
+          navigation.navigate("Password_register");
         }}
       />
-      <View className=" bg-transparent w-full h-[50] justify-center pl-1"></View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex-1 items-center ">
-          <View className="w-full h-fit">
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <View style={{ width: "100%" }}>
             <Title content={"GENDER"} />
           </View>
-          <View className="w-full items-center justify-center">
-            <View id="login_form" className="w-[90%]">
-              <View className="w-full h-fit ">
+          <View
+            style={{
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <View id="login_form" style={{ width: "90%" }}>
+              <View style={{ width: "100%" }}>
                 <FormLabel label="What’s your gender?" />
                 <RadioButtonCollection
                   array={[
@@ -65,7 +74,14 @@ const GenderRegisterScreen = ({ route, navigation }) => {
                 />
               </View>
             </View>
-            <View className="w-full h-fit items-center justify-center pt-24">
+            <View
+              style={{
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: 96,
+              }}
+            >
               <CTAButton
                 text={"Next"}
                 onPress={handleLogin}

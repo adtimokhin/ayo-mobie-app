@@ -97,21 +97,42 @@ const ConfimEmailRegisterScreen = ({ route, navigation }) => {
   return (
     <View>
       {loading && <LoadingCover />}
-      <SafeAreaView className="w-full h-full bg-purple">
-        <View className=" bg-transparent w-full h-[50] justify-center pl-1"></View>
+      <SafeAreaView
+        style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
+      >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View className="flex-1 items-center ">
-            <View className="w-full h-fit">
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <View style={{ width: "100%" }}>
               <Title content={"CONFIRM"} />
             </View>
-            <View className="w-full items-center justify-center">
-              <View id="login_form" className="w-[90%]">
-                <View className="w-full h-fit ">
+            <View
+              style={{
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <View id="login_form" style={{ width: "90%" }}>
+                <View style={{ width: "100%" }}>
                   <FormLabel label="We sent you an email. Follow the link to verify your email" />
                 </View>
               </View>
-              <View className="w-[60%] h-[300px] items-center justify-center "></View>
-              <View className="w-full h-fit items-center justify-center pt-24">
+              <View
+                style={{
+                  width: "60%",
+                  height: 300,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              ></View>
+              <View
+                style={{
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingTop: 96,
+                }}
+              >
                 <CTAButton text={"Press to Login"} onPress={handleLogin} />
               </View>
             </View>

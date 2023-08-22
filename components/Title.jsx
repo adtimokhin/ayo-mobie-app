@@ -13,7 +13,12 @@ const Title = ({ content }) => {
     >
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Text
-          style={{ fontFamily: "lalezar", letterSpacing: 0, color:"#FCFBFC", fontSize: 80 }}
+          style={{
+            fontFamily: "lalezar",
+            letterSpacing: -2,
+            color: "#FCFBFC",
+            fontSize: 68,
+          }}
         >
           {content}
         </Text>

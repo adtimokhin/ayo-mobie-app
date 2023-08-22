@@ -19,6 +19,8 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/actions";
 import { getUserData } from "../../utils/userActions";
 
+//Fixed
+
 const PasswordScreen = ({ route, navigation }) => {
   const auth = FIREBASE_AUTH;
 
@@ -116,25 +118,40 @@ const PasswordScreen = ({ route, navigation }) => {
 
   return (
     <View>
-      {loading && <LoadingCover text="Trying to log you in..." />}
-      <SafeAreaView className="w-full h-full bg-purple">
+      {loading && <LoadingCover />}
+      <SafeAreaView
+        style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
+      >
         <NavHeader
           onPress={() => {
             navigation.navigate("Email_login");
           }}
         />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View className="flex-1 items-center ">
-            <View className="w-full h-fit">
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <View style={{ width: "100%" }}>
               <Title content={"PASSWORD"} />
             </View>
-            <View className="w-full items-center justify-center">
-              <View id="login_form" className="w-[90%]">
-                <View className="w-full h-fit ">
+            <View
+              style={{
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <View id="login_form" style={{ width: "90%" }}>
+                <View style={{ width: "100%" }}>
                   <FormLabel label="Enter your password:" />
                   <TextInput
-                    className="w-full bg-[#C1ACE9] h-[40px] rounded-[14px] text-[#4E22A1] px-3"
-                    style={{ fontFamily: "lalezar" }}
+                    style={{
+                      fontFamily: "lalezar",
+                      width: "100%",
+                      backgroundColor: "#C1ACE9",
+                      height: 40,
+                      borderRadius: 14,
+                      color: "#4E22A1",
+                      paddingHorizontal: 12,
+                    }}
                     placeholder="********"
                     secureTextEntry
                     autoCorrect={false}
@@ -144,7 +161,14 @@ const PasswordScreen = ({ route, navigation }) => {
                   />
                 </View>
               </View>
-              <View className="w-full h-fit items-center justify-center pt-24">
+              <View
+                style={{
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingTop: 96,
+                }}
+              >
                 <CTAButton
                   text={"Login"}
                   onPress={handleLogin}

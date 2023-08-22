@@ -12,6 +12,8 @@ import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
 
+// Fixed
+
 const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
   const passwordOne = route.params?.passwordOne;
   useLayoutEffect(() => {
@@ -34,24 +36,39 @@ const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
   };
 
   return (
-    <SafeAreaView className="w-full h-full bg-purple">
+    <SafeAreaView
+      style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
+    >
       <NavHeader
         onPress={() => {
           navigation.navigate("Password_register");
         }}
       />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex-1 items-center ">
-          <View className="w-full h-fit">
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <View style={{ width: "100%" }}>
             <Title content={"AGAIN"} />
           </View>
-          <View className="w-full items-center justify-center">
-            <View id="login_form" className="w-[90%]">
-              <View className="w-full h-fit ">
+          <View
+            style={{
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <View id="login_form" style={{ width: "90%" }}>
+              <View style={{ width: "100%" }}>
                 <FormLabel label="Re-enter your password:" />
                 <TextInput
-                  className="w-full bg-[#C1ACE9] h-[40px] rounded-[14px] text-[#4E22A1] px-3"
-                  style={{ fontFamily: "lalezar" }}
+                  style={{
+                    fontFamily: "lalezar",
+                    width: "100%",
+                    backgroundColor: "#C1ACE9",
+                    height: 40,
+                    borderRadius: 14,
+                    color: "#4E22A1",
+                    paddingHorizontal: 12,
+                  }}
                   placeholder="********"
                   secureTextEntry
                   autoCorrect={false}
@@ -61,7 +78,14 @@ const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
                 />
               </View>
             </View>
-            <View className="w-full h-fit items-center justify-center pt-24">
+            <View
+              style={{
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: 96,
+              }}
+            >
               <CTAButton
                 text={"Next"}
                 onPress={handleLogin}

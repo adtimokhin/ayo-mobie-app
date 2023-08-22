@@ -39,14 +39,7 @@ const EmailScreen = () => {
     <SafeAreaView
       style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
     >
-      <View
-        style={{
-          width: "100%",
-          height: 50,
-          justifyContent: "center",
-          paddingLeft: 4,
-        }}
-      ></View>
+    
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1, alignContent: "center" }}>
           <View style={{ width: "100%" }}>
