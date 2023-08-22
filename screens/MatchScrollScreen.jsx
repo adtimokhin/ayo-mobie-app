@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useState, useEffect } from "react";
-import { SafeAreaView, View } from "react-native";
+import { ActivityIndicator, SafeAreaView, Text, View } from "react-native";
 
 import Title from "../components/Title";
 import MatchGallery from "../components/photo/MatchGallery";
@@ -12,12 +12,12 @@ import { FIREBASE_DB } from "../firebaseConfig";
 import { onSnapshot, doc } from "@firebase/firestore";
 
 // Fixed
-// TODO: Add a spinner that indicates that loading is happening, or else there should be a text telling that there are no matches
 
 const MatchScrollScreen = () => {
   const navigation = useNavigation();
   const userData = useSelector((state) => state.user).user;
   const [people, setPeople] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
 
   useEffect(() => {
     const getMatches = async () => {
@@ -34,11 +34,13 @@ const MatchScrollScreen = () => {
         } else {
           matchData = await getUserData(matchRef.userOne.id);
         }
+
         returnValue.push(matchData);
       }
 
       setPeople(returnValue);
       let firstTime = true;
+      setLoadingData(false); // Means that data has been retrieved and now items can be loaded onto the screen
 
       // Start listening to changes made to the matches section of the pool:
       const poolRef = doc(FIREBASE_DB, "pools", poolUID);
@@ -106,7 +108,22 @@ const MatchScrollScreen = () => {
             paddingBottom: 45,
           }}
         >
-          <MatchGallery photos={people} />
+          {loadingData ? (
+            <ActivityIndicator color="#C1ACE9" size="large" />
+          ) : people.length == 0 ? (
+            <Text
+              style={{
+                color: "rgba(252, 251, 252, 0.7)",
+                fontWeight: "600",
+                textAlign: "center",
+              }}
+            >
+              Right now you have no matches. Go around and make a good
+              impression :)
+            </Text>
+          ) : (
+            <MatchGallery photos={people} />
+          )}
         </View>
       </View>
     </SafeAreaView>
