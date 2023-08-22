@@ -4,6 +4,8 @@ import { FIREBASE_STORAGE } from "../../firebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
 import { Image } from "react-native";
 
+// Fixed
+
 const MatchPhoto = ({ imageName }) => {
   const { windowWidth, windowHeight } = useScreenDimensions();
   const [imageURI, setImageURI] = useState("");
@@ -28,9 +30,9 @@ const MatchPhoto = ({ imageName }) => {
         marginLeft: 10, // add space on the left
         borderWidth: 4,
         borderColor: "#FE6244",
+        borderRadius: 15,
       }}
       source={{ uri: imageURI }}
-      className="rounded-[15px]"
     />
   );
 };

@@ -11,6 +11,9 @@ import { getUserData } from "../utils/userActions";
 import { FIREBASE_DB } from "../firebaseConfig";
 import { onSnapshot, doc } from "@firebase/firestore";
 
+// Fixed
+// TODO: Add a spinner that indicates that loading is happening, or else there should be a text telling that there are no matches
+
 const MatchScrollScreen = () => {
   const navigation = useNavigation();
   const userData = useSelector((state) => state.user).user;
@@ -81,13 +84,28 @@ const MatchScrollScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView className="flex-1 items-center justify-center bg-purple">
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#5F29C7",
+      }}
+    >
       <AuthNavHeader />
-      <View className="flex-1 items-center  ">
-        <View className="w-[100vw] h-fit">
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <View style={{ width: "100%" }}>
           <Title content={"MACTHES"} />
         </View>
-        <View className="w-full items-center justify-center flex-1 pb-[45px] h-fit">
+        <View
+          style={{
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+            paddingBottom: 45,
+          }}
+        >
           <MatchGallery photos={people} />
         </View>
       </View>

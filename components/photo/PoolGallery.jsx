@@ -4,6 +4,8 @@ import { FlatList } from "react-native";
 import { addLike } from "../../utils/poolActions";
 import { useSelector } from "react-redux";
 
+// Fixed
+
 const PoolGallery = ({ photos }) => {
   const userData = useSelector((state) => state.user).user;
 

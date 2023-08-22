@@ -2,6 +2,8 @@ import React from "react";
 import MatchPhoto from "./MatchPhoto";
 import { FlatList } from "react-native";
 
+// Fixed
+
 const MatchGallery = ({ photos }) => {
   return (
     <FlatList

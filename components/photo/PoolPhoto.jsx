@@ -4,6 +4,8 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { FIREBASE_STORAGE } from "../../firebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
 
+// Fixed
+
 const PoolPhoto = ({ imageName, liked, onPress }) => {
   const [imageURI, setImageURI] = useState("");
   const [buttonLiked, setButtonLiked] = useState(liked);
@@ -21,7 +23,7 @@ const PoolPhoto = ({ imageName, liked, onPress }) => {
   }, []);
 
   return (
-    <View className="relative">
+    <View style={{ position: "relative" }}>
       <Image
         style={{
           // width: windowWidth * 0.8,
@@ -29,13 +31,22 @@ const PoolPhoto = ({ imageName, liked, onPress }) => {
           aspectRatio: 0.8,
           resizeMode: "cover",
           marginBottom: 30,
+          borderRadius: 15,
         }}
         source={{ uri: imageURI }}
-        className="rounded-[15px]"
       />
       {!buttonLiked ? (
         <TouchableOpacity
-          className="w-[50px] h-[50px] bg-[#FE6244] rounded-full absolute bottom-10 right-2 z-20"
+          style={{
+            width: 50,
+            height: 50,
+            backgroundColor: "#FE6244",
+            borderRadius: 25,
+            position: "absolute",
+            bottom: 30,
+            right: 0,
+            zIndex: 20,
+          }}
           onPress={() => {
             setButtonLiked(true);
             onPress();
@@ -44,7 +55,18 @@ const PoolPhoto = ({ imageName, liked, onPress }) => {
           {likeIcon}
         </TouchableOpacity>
       ) : (
-        <View className="w-[50px] h-[50px] bg-[#FE6244] rounded-full absolute bottom-10 right-2 z-20">
+        <View
+          style={{
+            width: 50,
+            height: 50,
+            backgroundColor: "#FE6244",
+            borderRadius: 25,
+            position: "absolute",
+            bottom: 30,
+            right: 0,
+            zIndex: 20,
+          }}
+        >
           {likedIcon}
         </View>
       )}

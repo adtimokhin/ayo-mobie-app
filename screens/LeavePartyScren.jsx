@@ -15,6 +15,8 @@ import { setUser } from "../redux/actions";
 import { changeUserCurrentParty } from "../utils/userActions";
 import LoadingCover from "../components/LoadingCover";
 
+// Fixed
+
 const LeavePartyScren = () => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
@@ -57,16 +59,30 @@ const LeavePartyScren = () => {
   };
 
   return (
-    <View className="w-full h-full">
+    <View style={{ width: "100%", height: "100%" }}>
       {loading && <LoadingCover />}
-      <SafeAreaView className="flex-1 items-center justify-center bg-purple">
+      <SafeAreaView
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#5F29C7",
+        }}
+      >
         <AuthNavHeader />
-        <View className="flex-1 items-center w-full">
-          <View className="w-full h-fit bg-purple">
+        <View style={{ flex: 1, alignItems: "center", width: "100%" }}>
+          <View style={{ width: "100%" }}>
             <Title content={"LEAVE"} />
           </View>
 
-          <View className="w-full items-center absolute top-1/2 -translate-y-[100%]">
+          <View
+            style={{
+              width: "100%",
+              alignItems: "center",
+              position: "absolute",
+              top: "50%",
+            }}
+          >
             <CTAButton
               text={"Leave the party"}
               onPress={() => {
