@@ -26,7 +26,7 @@ const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
   const [password, setPassword] = useState("");
   const handleLogin = () => {
     if (password !== passwordOne) {
-      Alert.alert("Passwords do not match");
+      Alert.alert("Passwords do not match", "Please enter the same password.");
     } else {
       navigation.navigate("Gender_register", {
         email: route.params.email,

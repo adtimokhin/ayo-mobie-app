@@ -12,9 +12,9 @@ import {
 import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
+import { validateEmail } from "../../utils/regex";
 
 // Fixed
-// TODO: Add email regex validation support.
 
 const EmailRegisterScreen = () => {
   const navigation = useNavigation();
@@ -27,11 +27,11 @@ const EmailRegisterScreen = () => {
   //   State of the fields
   const [email, setEmail] = useState("");
 
-  const handleLogin = () => {
-    if (email === "") {
-      Alert.alert("Error", "Both fields are required");
-    } else {
+  const handleEmailValidation = () => {
+    if (validateEmail(email)) {
       navigation.navigate("Password_register", { email: email });
+    } else {
+      Alert.alert("Invalid Email", "Please, enter a valid email");
     }
   };
 
@@ -39,7 +39,6 @@ const EmailRegisterScreen = () => {
     <SafeAreaView
       style={{ width: "100%", height: "100%", backgroundColor: "#5F29C7" }}
     >
-      
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1, alignContent: "center" }}>
           <View style={{ width: "100%" }}>
@@ -85,7 +84,7 @@ const EmailRegisterScreen = () => {
             >
               <CTAButton
                 text={"Next"}
-                onPress={handleLogin}
+                onPress={handleEmailValidation}
                 disabled={email === ""}
               />
             </View>

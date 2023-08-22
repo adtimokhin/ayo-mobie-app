@@ -11,9 +11,9 @@ import Title from "../../components/Title";
 import CTAButton from "../../components/CTAButton";
 import FormLabel from "../../components/forms/FormLabel";
 import NavHeader from "../../components/NavHeader";
+import { validatePassword } from "../../utils/regex";
 
 // Fixed
-// TODO: Add password regex support.
 
 const PasswordRegisterScreen = ({ route, navigation }) => {
   const email = route.params?.email;
@@ -26,13 +26,16 @@ const PasswordRegisterScreen = ({ route, navigation }) => {
   //   State of the fields
   const [password, setPassword] = useState("");
   const handleLogin = () => {
-    if (password === "") {
-      Alert.alert("Error", "Both fields are required");
-    } else {
+    if (validatePassword(password)) {
       navigation.navigate("Password_again_register", {
         passwordOne: password,
         email: email,
       });
+    } else {
+      Alert.alert(
+        "Invalid Password",
+        "Password must be at least 7 characters long, contain both lowercase and uppercase letters as well at least one number"
+      );
     }
   };
 

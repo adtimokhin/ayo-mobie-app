@@ -31,7 +31,7 @@ const EmailScreen = () => {
     if (validateEmail(email)) {
       navigation.navigate("Password_login", { email: email });
     } else {
-      Alert.alert("Error", "Please enter a valid email");
+      Alert.alert("Invalid Email", "Please, enter a valid email");
     }
   };
 
