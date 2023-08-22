@@ -1,9 +1,7 @@
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import LoadingScreen from "./screens/LoadingScreen";
-import LoginScreen from "./screens/LoginScreen";
 
 import * as Font from "expo-font";
 import EmailScreen from "./screens/login/EmailScreen";
