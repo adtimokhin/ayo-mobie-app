@@ -30,9 +30,9 @@ Before you begin, make sure you have the following software installed:
 
 1. Clone the repository to your local machine:
 
-   \`\`\`bash
+   ```bash
    git clone https://github.com/adtimokhin/ayo-mobie-app.git
-   \`\`\`
+   ```
 
 2. Navigate to the project directory:
 
