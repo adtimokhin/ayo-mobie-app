@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { SafeAreaView, View } from "react-native";
+import { ActivityIndicator, SafeAreaView, Text, View } from "react-native";
 
 import Title from "../components/Title";
 import PoolGallery from "../components/photo/PoolGallery";
@@ -22,6 +22,7 @@ const PartyPoolScreen = () => {
   const navigation = useNavigation();
   const userData = useSelector((state) => state.user).user;
   const [people, setPeople] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -37,6 +38,7 @@ const PartyPoolScreen = () => {
       const peopleToShow = await getAllPeopleUserWantsToSee(poolUID, userData);
 
       setPeople(peopleToShow);
+      setLoadingData(false);
 
       let firstTime = true;
       let peopleAtParty = 0;
@@ -129,7 +131,22 @@ const PartyPoolScreen = () => {
             paddingBottom: 45,
           }}
         >
-          <PoolGallery photos={people} />
+          {loadingData ? (
+            <ActivityIndicator color="#C1ACE9" size="large" />
+          ) : people.length == 0 ? (
+            <Text
+              style={{
+                color: "rgba(252, 251, 252, 0.7)",
+                fontWeight: "600",
+                textAlign: "center",
+              }}
+            >
+              Seems like there are not a lot of people at the party at the
+              moment. But keep your phone by the side!
+            </Text>
+          ) : (
+            <PoolGallery photos={people} />
+          )}
         </View>
       </View>
     </SafeAreaView>
