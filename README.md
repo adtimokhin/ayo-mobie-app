@@ -31,29 +31,29 @@ Before you begin, make sure you have the following software installed:
 
 1. Clone the repository to your local machine:
 
-   \`\`\`bash
+   ```bash
    git clone https://github.com/adtimokhin/ayo-mobie-app.git
-   \`\`\`
+   ```
 
 2. Navigate to the project directory:
 
-   \`\`\`bash
+   ```bash
    cd ayo-mobie-app
-   \`\`\`
+   ```
 
 3. Install the required npm packages:
 
-  \`\`\`bash
+  ```bash
    npm install
-   \`\`\`
+   ```
 
 ### Running in Development Mode
 
 To run the AYO The One app in development mode with optimizations, use the following command:
 
-\`\`\`bash
+```bash
 npx expo start --no-dev --minify
-\`\`\`
+```
 
 ### Sending the App to Expo Build
 
@@ -61,17 +61,17 @@ Before sending the app to Expo Build, make sure to update the version of the app
 
 To send the app to Expo Build for iOS, use the following command:
 
-\`\`\`bash
+```bash
 eas build -p ios
-\`\`\`
+```
 
 ### Publishing the App to the App Store
 
 To publish the app to the App Store, use the following command:
 
-\`\`\`bash
+```bash
 eas submit -p ios --latest
-\`\`\`
+```
 
 Make sure you have configured your app for distribution in the Apple Developer Portal and Expo credentials are set up correctly.
 
@@ -83,9 +83,9 @@ To launch the AYO The One app on your machine, follow these steps:
 
 2. Run the following command to start the Expo development server:
 
-   \`\`\`bash
+   ```bash
    npx expo start
-   \`\`\`
+   ```
 
 3. A web page will open in your browser displaying a QR code. You can use this QR code to open the app on your physical device using the Expo Go app or launch the app in an Android or iOS simulator.
 
