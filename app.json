@@ -2,14 +2,14 @@
   "expo": {
     "name": "AYO The One",
     "slug": "ayo-mobile-app",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#5F29C7"
     },
     "assetBundlePatterns": [
       "**/*"
