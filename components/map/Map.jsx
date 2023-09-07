@@ -59,8 +59,10 @@ const Map = ({ userCoord }) => {
         longitudeDelta: 0.09,
       }}
       onRegionChangeComplete={handleRegionChange}
+      showsUserLocation={true}
+      followsUserLocation={true}
     >
-      {markers}
+      {markers} 
     </MapView>
   );
 };

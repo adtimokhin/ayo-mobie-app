@@ -67,23 +67,15 @@ const MapScreen = () => {
       <View
         style={{
           flex: 1,
-          alignItems: "center",
           width: "100%",
           height: "100%",
+          backgroundColor: "#4E22A1",
         }}
       >
-        <View
-          style={{
-            flex: 1,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "#4E22A1",
-          }}
-        >
-          {userPosition ? (
-            <Map userCoord={userPosition}></Map>
-          ) : (
-            <ActivityIndicator
+        {userPosition ? (
+          <Map userCoord={userPosition}></Map>
+        ) : (
+          <ActivityIndicator
             color="#C1ACE9"
             size="large"
             style={{
@@ -92,8 +84,7 @@ const MapScreen = () => {
               left: "48%", // Horizontally centering
             }}
           />
-          )}
-        </View>
+        )}
       </View>
     </SafeAreaView>
   );

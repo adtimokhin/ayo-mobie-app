@@ -75,7 +75,7 @@ const ChangePhotoScreen = ({ route, navigation }) => {
       handleShowToast();
       navigation.goBack();
     } catch (error) {
-      console.log(error);
+      console.error("Error Changing image for the user:",error);
       Alert.alert(
         "Error",
         "Something went wrong while changing the image. Try again"
