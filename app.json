@@ -16,7 +16,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.adtimokhin.ayo"
+      "bundleIdentifier": "com.adtimokhin.ayo",
+      "googleMapsApiKey":"AIzaSyDW5ZPS12MokYOG5w4nfgKLYbUFs7IKkzY"
     },
     "android": {
       "adaptiveIcon": {
