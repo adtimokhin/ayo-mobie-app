@@ -68,15 +68,18 @@ const PartyPoolScreen = () => {
           const newUser = currentlyPresent[currentlyPresent.length - 1];
           peopleAtPartyCurrently.push(newUser.id);
           const newUserData = await getUserData(newUser.id);
+          // FIXME: Right now this functionality will be disabled - we will show all users to all users.
           // Check if the two users want to see one another
-          if (
-            userWantsToSeeOtherUser(userData, newUserData) &&
-            userWantsToSeeOtherUser(newUserData, userData)
-          ) {
-            // Add user to the list of people
-            // TODO: Need a method that will sort the list of people in the order that we want
-            setPeople((prevPeople) => [...prevPeople, newUserData]);
-          }
+          // if (
+          //   userWantsToSeeOtherUser(userData, newUserData) &&
+          //   userWantsToSeeOtherUser(newUserData, userData)
+          // ) {
+          //   // Add user to the list of people
+          //   // TODO: Need a method that will sort the list of people in the order that we want
+          //   setPeople((prevPeople) => [...prevPeople, newUserData]);
+          // }
+
+          setPeople((prevPeople) => [...prevPeople, newUserData]);
         } else if (peopleAtParty > currentlyPresent.length) {
           const usersUIDs = [];
           for (let i = 0; i < currentlyPresent.length; i++) {
