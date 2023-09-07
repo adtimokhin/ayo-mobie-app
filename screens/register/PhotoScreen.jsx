@@ -65,14 +65,13 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
       // Adding image to the firebase storage
       const imagePath = imageUrl.split("/").pop();
       const fileName = `${userUID}.${imagePath.split(".")[1]}`;
-      console.log("fileName :>> ", fileName);
+      console.info("fileName :>> ", fileName);
       const imageRef = ref(FIREBASE_STORAGE, `images/${fileName}`);
 
       // Upload the file to the reference
       const response = await fetch(imageUrl);
 
       const blob = await response.blob();
-      console.log("Blob >> ", blob);
       await uploadBytes(imageRef, blob, { contentType: "image/jpeg" }); // TODO: This file may be of othrt tpye of image
       // await imageRef.putFile(imageUrl); // Unsure might not work
 
@@ -93,7 +92,7 @@ const PhotoRegisterScreen = ({ route, navigation }) => {
       // navigating to the new page
       navigation.navigate("Confirm_email_register", { ...route.params });
     } catch (error) {
-      console.log("Error: " + error.message);
+      console.error("Unhandled Error While Creating an Account: " + error.message);
       Alert.alert(
         "Shoot!",
         "Something went wrong while registering you... Try again!"
