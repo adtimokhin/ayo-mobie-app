@@ -50,7 +50,7 @@ const LeavePartyScren = () => {
       newUserData.partyUID = null;
       dispatch(setUser(newUserData));
 
-      navigation.navigate("NotJoinPartyStack");
+      navigation.navigate("Map");
     } catch (error) {
       console.log("error:", error.message);
     } finally {

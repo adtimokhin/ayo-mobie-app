@@ -20,6 +20,7 @@ import { checkPartyActiveByPartyId } from "../utils/partyActions";
 import { FIREBASE_DB } from "../firebaseConfig";
 import { changeUserCurrentParty } from "../utils/userActions";
 import { useToast } from "../components/hot-toast/ToastProvider";
+import { setUser } from "../redux/actions";
 
 const ScannerScreen = ({}) => {
   const navigation = useNavigation();
@@ -139,10 +140,8 @@ const ScannerScreen = ({}) => {
           <CTAButton
             text={`${startScan?"Cancel Scanning":"Restart Scanning"}`}
             onPress={() => {
-              // TODO: Uncomment this line
-              // navigation.goBack();
-
               setStartScan((prev)=>!prev);
+              navigation.goBack();
             }}
           />
         </View>

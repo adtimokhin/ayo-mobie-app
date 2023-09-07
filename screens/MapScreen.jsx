@@ -7,6 +7,7 @@ import AuthNavHeader from "../components/auth/AuthNavHeader";
 
 import { useSelector } from "react-redux";
 import * as Location from "expo-location";
+import CTAButton from "../components/CTAButton";
 
 // Fixed
 
@@ -86,6 +87,29 @@ const MapScreen = () => {
           />
         )}
       </View>
+      <View
+          style={{
+            width: "100%",
+            position: "absolute",
+            height: 100,
+            bottom: 0,
+            backgroundColor: "#5F29C7",
+            borderTopLeftRadius: 17,
+            borderTopRightRadius: 17,
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CTAButton
+          text={"Scan Party-QR Code"}
+            onPress={() => {
+              // TODO: Uncomment this line
+              navigation.navigate("QRScanner");
+
+            }}
+          />
+        </View>
     </SafeAreaView>
   );
 };

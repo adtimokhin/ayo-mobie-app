@@ -36,7 +36,7 @@ const LoadingScreen = () => {
           // If they are registered at some party pool then we need to navigate them to the correct screen
           navigation.navigate("JoinPartyStack");
         } else {
-          navigation.navigate("NotJoinPartyStack");
+          navigation.navigate("Map");
         }
       } else {
         console.log("No User :(");

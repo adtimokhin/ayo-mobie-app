@@ -41,55 +41,55 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 // TODO: Move this stack to another file
-function NotJoinPartyStack() {
-  const navigation = useNavigation();
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
+// function NotJoinPartyStack() {
+//   const navigation = useNavigation();
+//   useLayoutEffect(() => {
+//     navigation.setOptions({
+//       headerShown: false,
+//     });
+//   }, []);
 
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+//   return (
+//     <Tab.Navigator
+//       screenOptions={({ route }) => ({
+//         tabBarIcon: ({ focused, color, size }) => {
+//           let iconName;
 
-          if (route.name === "QR") {
-            iconName = "plus-square";
-          } else if (route.name === "Map") {
-            iconName = "map";
-          }
+//           if (route.name === "QR") {
+//             iconName = "plus-square";
+//           } else if (route.name === "Map") {
+//             iconName = "map";
+//           }
 
-          // Return a Icon component with the relevant icon name
-          return <Icon name={iconName} size={30} color={color} />;
-        },
-        tabBarStyle: {
-          width: "86%",
-          paddingHorizontal: 5,
-          paddingTop: 0,
-          backgroundColor: "#C1ACE9",
-          position: "absolute",
-          left: "7%",
-          borderRadius: "17px",
-          borderTopWidth: 0,
-          flex: 1,
-        },
-        tabBarActiveTintColor: "#4E22A1",
-        tabBarInactiveTintColor: "#8D6EC9",
-        tabBarShowLabel: true,
-      })}
-      // tabBarOptions={{
-      //   activeTintColor: "#4E22A1",
-      //   inactiveTintColor: "#8D6EC9",
-      //   showLabel: true,
-      // }}
-    >
-      <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="QR" component={QRScreen}  />
-    </Tab.Navigator>
-  );
-}
+//           // Return a Icon component with the relevant icon name
+//           return <Icon name={iconName} size={30} color={color} />;
+//         },
+//         tabBarStyle: {
+//           width: "86%",
+//           paddingHorizontal: 5,
+//           paddingTop: 0,
+//           backgroundColor: "#C1ACE9",
+//           position: "absolute",
+//           left: "7%",
+//           borderRadius: "17px",
+//           borderTopWidth: 0,
+//           flex: 1,
+//         },
+//         tabBarActiveTintColor: "#4E22A1",
+//         tabBarInactiveTintColor: "#8D6EC9",
+//         tabBarShowLabel: true,
+//       })}
+//       // tabBarOptions={{
+//       //   activeTintColor: "#4E22A1",
+//       //   inactiveTintColor: "#8D6EC9",
+//       //   showLabel: true,
+//       // }}
+//     >
+//       <Tab.Screen name="Map" component={MapScreen} />
+//       <Tab.Screen name="QR" component={QRScreen}  />
+//     </Tab.Navigator>
+//   );
+// }
 
 // TODO: Move this stack to another file
 function JoinPartyStack() {
@@ -163,16 +163,18 @@ export default function App() {
           <NotificationProvider>
             <NavigationContainer>
               <Stack.Navigator>
-                {/* <Stack.Screen name="ScannerScreen" component={ScannerScreen} /> */}
+             
                 <Stack.Screen name="Loading" component={LoadingScreen} />
+                <Stack.Screen name="Map" component={MapScreen} />
+                <Stack.Screen name="QRScanner" component={ScannerScreen} />
                 <Stack.Screen
                   name="JoinPartyStack"
                   component={JoinPartyStack}
                 />
-                <Stack.Screen
+                {/* <Stack.Screen
                   name="NotJoinPartyStack"
                   component={NotJoinPartyStack}
-                />
+                /> */}
                 <Stack.Screen name="Welcome" component={WelcomeScreen} />
                 <Stack.Screen
                   name="Email_register"
