@@ -81,22 +81,23 @@ const SettingsScreen = () => {
                 }}
                 text={"Change profile pic"}
               />
-              <SettingsButton
+              {/* FIXME: For now these option will remain disabled. */}
+              {/* <SettingsButton
                 onPress={() => {
                   navigation.navigate("ChangeGender", {
                     currentSex: userData.sex,
                   });
                 }}
                 text={"Change my gender"}
-              />
-              <SettingsButton
+              /> */}
+              {/* <SettingsButton
                 onPress={() => {
                   navigation.navigate("ChangeSexOfInterest", {
                     currentSex: userData.sexOfInterest,
                   });
                 }}
                 text={"Change who I see"}
-              />
+              /> */}
             </ButtonBlock>
 
             {/* Account Settings */}
