@@ -23,7 +23,7 @@ const PoolPhoto = ({ imageName, liked, onPress }) => {
   }, []);
 
   return (
-    <View style={{ position: "relative" }}>
+    <View style={{ position: "relative", backgroundColor:"#4E22A1", height:400, marginBottom:8,  borderRadius: 15 }}>
       <Image
         style={{
           // width: windowWidth * 0.8,
