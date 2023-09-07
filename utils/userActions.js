@@ -3,7 +3,16 @@ import {
   FIREBASE_DB,
   FIREBASE_STORAGE,
 } from "../firebaseConfig";
-import { doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  deleteDoc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  where,
+  query,
+  collection,
+} from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 import { ref, deleteObject } from "firebase/storage";
 import {
@@ -263,4 +272,30 @@ export async function getAllPeopleUserWantsToSee(poolUID, userData) {
   }
 
   return resultArray;
+}
+
+/**
+ * Asynchronously finds all doucments in the 'users' collection that match the given email.
+ * Returns an array of user data objects.
+ * The array is empty if no such user exists.
+ *
+ * @param {String} email
+ * @returns {Promise<Array>} Returns a Promise that resolves to an array of user data objects.
+ */
+export async function getUserDataByEmail(email) {
+  const q = query(
+    collection(FIREBASE_DB, "users"),
+    where("email", "==", email)
+  );
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    return [];
+  } else {
+    const result = [];
+    querySnapshot.forEach((doc) => {
+      result.push(doc.data());
+    });
+    return result;
+  }
 }
