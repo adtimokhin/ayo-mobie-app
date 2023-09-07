@@ -61,7 +61,7 @@ const MapScreen = () => {
         backgroundColor: "#5F29C7",
       }}
     >
-      <AuthNavHeader text="PARTIES AROUND YOU" />
+      <AuthNavHeader text="Parties Around" />
       {/* TODO: Go around and remove the Title component */}
 
       <View

@@ -69,11 +69,11 @@ const LeavePartyScren = () => {
           backgroundColor: "#5F29C7",
         }}
       >
-        <AuthNavHeader />
+        <AuthNavHeader text="Leave The Party" />
         <View style={{ flex: 1, alignItems: "center", width: "100%" }}>
-          <View style={{ width: "100%" }}>
+          {/* <View style={{ width: "100%" }}>
             <Title content={"LEAVE"} />
-          </View>
+          </View> */}
 
           <View
             style={{

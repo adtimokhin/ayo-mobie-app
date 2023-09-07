@@ -103,16 +103,13 @@ const QRScreen = () => {
       {loading && <LoadingCover />}
       {/* Main Content of the Page */}
       <SafeAreaView style={{ flex: 1 }}>
-        <AuthNavHeader/>
+      <AuthNavHeader text="Join Party" />
         <View
           style={{
             flex: 1,
             alignItems: "center",
           }}
         >
-          {/* Title of the page */}
-          <Title content={"SCAN QR"} />
-
           {/* QR components */}
           {startScan ? (
             <View

@@ -94,11 +94,11 @@ const MatchScrollScreen = () => {
         backgroundColor: "#5F29C7",
       }}
     >
-      <AuthNavHeader />
+      <AuthNavHeader text="Your Matches"/>
       <View style={{ flex: 1, alignItems: "center" }}>
-        <View style={{ width: "100%" }}>
+        {/* <View style={{ width: "100%" }}>
           <Title content={"MACTHES"} />
-        </View>
+        </View> */}
         <View
           style={{
             width: "100%",

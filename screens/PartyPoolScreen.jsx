@@ -120,11 +120,11 @@ const PartyPoolScreen = () => {
         backgroundColor: "#5F29C7",
       }}
     >
-      <AuthNavHeader />
+      <AuthNavHeader text="Here Right Now"/>
       <View style={{ flex: 1, alignItems: "center" }}>
-        <View style={{ width: "100%" }}>
-          <Title content={"HERE  RN"} />
-        </View>
+        {/* <View style={{ width: "100%" }}> */}
+          {/* <Title content={"HERE  RN"} /> */}
+        {/* </View> */}
         <View
           style={{
             width: "100%",

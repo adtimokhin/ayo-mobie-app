@@ -26,9 +26,9 @@ const AuthNavHeader = ({ text }) => {
             letterSpacing: 0,
             color: "#FCFBFC",
             position: "absolute",
-            top: 1,
+            bottom: 0,
             fontSize: 20,
-            left: 3,
+            left: 10,
           }}
         >
           {text}
