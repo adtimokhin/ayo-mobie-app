@@ -35,8 +35,8 @@ const QRReader = ({ onFail, onQRScanned }) => {
   return (
     <View
       style={{
-        width: "80%",
-        aspectRatio: 1.176, // 85vw / 80vw ≈ 1.176
+        width: "100%",
+        height:"100%",
         backgroundColor: "#FE6244",
       }}
     >

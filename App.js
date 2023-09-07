@@ -34,6 +34,7 @@ import ChangePhotoScreen from "./screens/settings/ChangePhotoScreen";
 import { NotificationProvider } from "./components/notifications/NotificationProvider";
 import ToastProvider from "./components/hot-toast/ToastProvider";
 import PopUpProvider from "./components/screen-popup/PopUpProvider";
+import ScannerScreen from "./screens/ScannerScreen";
 
 // React Navigator
 const Stack = createNativeStackNavigator();
@@ -85,7 +86,7 @@ function NotJoinPartyStack() {
       // }}
     >
       <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="QR" component={QRScreen} />
+      <Tab.Screen name="QR" component={QRScreen}  />
     </Tab.Navigator>
   );
 }
@@ -162,6 +163,7 @@ export default function App() {
           <NotificationProvider>
             <NavigationContainer>
               <Stack.Navigator>
+                {/* <Stack.Screen name="ScannerScreen" component={ScannerScreen} /> */}
                 <Stack.Screen name="Loading" component={LoadingScreen} />
                 <Stack.Screen
                   name="JoinPartyStack"
