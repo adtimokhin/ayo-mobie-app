@@ -28,9 +28,12 @@ const ReEnterPasswordRegisterScreen = ({ route, navigation }) => {
     if (password !== passwordOne) {
       Alert.alert("Passwords do not match", "Please enter the same password.");
     } else {
-      navigation.navigate("Gender_register", {
+      // FIXME: Currently the gender functionality will be disabled.
+      navigation.navigate("Photo_register", {
         email: route.params.email,
         password: passwordOne,
+        gender: "other",
+        sexOfInterest: "other"
       });
     }
   };

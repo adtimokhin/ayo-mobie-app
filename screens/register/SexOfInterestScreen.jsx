@@ -34,7 +34,7 @@ const SexOfInterestRegisterScreen = ({ route, navigation }) => {
     >
       <NavHeader
         onPress={() => {
-          navigation.navigate("Gender_register");
+          navigation.navigate("Password_register");
         }}
       />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
