@@ -32,6 +32,7 @@ import store from "./redux/store";
 import ChangeSexOfInterestScreen from "./screens/settings/ChangeSexOfInterestScreen";
 import ChangePhotoScreen from "./screens/settings/ChangePhotoScreen";
 import { NotificationProvider } from "./components/notifications/NotificationProvider";
+import ToastProvider from "./components/hot-toast/ToastProvider";
 
 // React Navigator
 const Stack = createNativeStackNavigator();
@@ -155,56 +156,58 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NotificationProvider>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Loading" component={LoadingScreen} />
-            <Stack.Screen name="JoinPartyStack" component={JoinPartyStack} />
-            <Stack.Screen
-              name="NotJoinPartyStack"
-              component={NotJoinPartyStack}
-            />
-            <Stack.Screen name="Welcome" component={WelcomeScreen} />
-            <Stack.Screen
-              name="Email_register"
-              component={EmailRegisterScreen}
-            />
-            <Stack.Screen
-              name="Password_register"
-              component={PasswordRegisterScreen}
-            />
-            <Stack.Screen
-              name="Password_again_register"
-              component={ReEnterPasswordRegisterScreen}
-            />
-            <Stack.Screen
-              name="Gender_register"
-              component={GenderRegisterScreen}
-            />
-            <Stack.Screen
-              name="Sex_register"
-              component={SexOfInterestRegisterScreen}
-            />
-            <Stack.Screen
-              name="Photo_register"
-              component={PhotoRegisterScreen}
-            />
-            <Stack.Screen
-              name="Confirm_email_register"
-              component={ConfimEmailRegisterScreen}
-            />
-            <Stack.Screen name="Email_login" component={EmailScreen} />
-            <Stack.Screen name="Password_login" component={PasswordScreen} />
-            <Stack.Screen name="Settings" component={SettingsScreen} />
-            <Stack.Screen name="ChangeGender" component={ChangeSexScreen} />
-            <Stack.Screen
-              name="ChangeSexOfInterest"
-              component={ChangeSexOfInterestScreen}
-            />
-            <Stack.Screen name="ChangePhoto" component={ChangePhotoScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </NotificationProvider>
+      <ToastProvider>
+        <NotificationProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="Loading" component={LoadingScreen} />
+              <Stack.Screen name="JoinPartyStack" component={JoinPartyStack} />
+              <Stack.Screen
+                name="NotJoinPartyStack"
+                component={NotJoinPartyStack}
+              />
+              <Stack.Screen name="Welcome" component={WelcomeScreen} />
+              <Stack.Screen
+                name="Email_register"
+                component={EmailRegisterScreen}
+              />
+              <Stack.Screen
+                name="Password_register"
+                component={PasswordRegisterScreen}
+              />
+              <Stack.Screen
+                name="Password_again_register"
+                component={ReEnterPasswordRegisterScreen}
+              />
+              <Stack.Screen
+                name="Gender_register"
+                component={GenderRegisterScreen}
+              />
+              <Stack.Screen
+                name="Sex_register"
+                component={SexOfInterestRegisterScreen}
+              />
+              <Stack.Screen
+                name="Photo_register"
+                component={PhotoRegisterScreen}
+              />
+              <Stack.Screen
+                name="Confirm_email_register"
+                component={ConfimEmailRegisterScreen}
+              />
+              <Stack.Screen name="Email_login" component={EmailScreen} />
+              <Stack.Screen name="Password_login" component={PasswordScreen} />
+              <Stack.Screen name="Settings" component={SettingsScreen} />
+              <Stack.Screen name="ChangeGender" component={ChangeSexScreen} />
+              <Stack.Screen
+                name="ChangeSexOfInterest"
+                component={ChangeSexOfInterestScreen}
+              />
+              <Stack.Screen name="ChangePhoto" component={ChangePhotoScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </NotificationProvider>
+      </ToastProvider>
     </Provider>
   );
 }

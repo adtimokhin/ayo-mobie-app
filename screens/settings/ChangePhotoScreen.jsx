@@ -13,6 +13,7 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/actions";
+import { useToast } from "../../components/hot-toast/ToastProvider";
 
 // Fixed
 
@@ -24,6 +25,11 @@ const ChangePhotoScreen = ({ route, navigation }) => {
   const [loading, setLoading] = useState(false);
   const userData = useSelector((state) => state.user).user;
   const dispatch = useDispatch();
+
+  const showToast = useToast(); 
+  const handleShowToast = () => {
+    showToast('Image changed successfully.');
+  };
 
   //   Getting the old image
 
@@ -66,14 +72,8 @@ const ChangePhotoScreen = ({ route, navigation }) => {
       dispatch(setUser(newUserData));
 
       // Letting the user know that the image has been uploaded successfully
-      Alert.alert("All set!", "", [
-        {
-          text: "Nice",
-          // Return user back to the settings page after a button on the alert has been pressed
-          onPress: () => navigation.goBack(),
-          style: "default",
-        },
-      ]);
+      handleShowToast();
+      navigation.goBack();
     } catch (error) {
       console.log(error);
       Alert.alert(

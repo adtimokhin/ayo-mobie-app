@@ -22,7 +22,7 @@ import { checkPartyActiveByPartyId } from "../utils/partyActions";
 import { useDispatch, useSelector } from "react-redux";
 import { changeUserCurrentParty } from "../utils/userActions";
 import { setUser } from "../redux/actions";
-
+import { useToast } from "../components/hot-toast/ToastProvider";
 
 // Fixed
 
@@ -103,7 +103,7 @@ const QRScreen = () => {
       {loading && <LoadingCover />}
       {/* Main Content of the Page */}
       <SafeAreaView style={{ flex: 1 }}>
-      <AuthNavHeader text="Join Party" />
+        <AuthNavHeader text="Join Party" />
         <View
           style={{
             flex: 1,
