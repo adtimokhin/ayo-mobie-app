@@ -39,7 +39,7 @@ const MapMarker = ({
         >
           {name}
         </Text>
-        <Image source={GeoMarkerImage} style={{ height: 50, width: 50 }} />
+        <Image source={GeoMarkerImage} style={{ height: 82, width: 50 }} />
       </View>
       <Callout>
         <View>

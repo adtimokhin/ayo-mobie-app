@@ -6,13 +6,13 @@ import Icon from "react-native-vector-icons/Feather";
 
 const AuthNavHeader = ({ text }) => {
   const navigation = useNavigation();
-  const myIcon = <Icon name="settings" size={29} color="#fff" />;
+  const myIcon = <Icon name="settings" size={25} color="#fff" />;
 
   return (
     <View
       style={{
         width: "100%",
-        height: 32,
+        height: 40,
         justifyContent: "center",
         marginLeft: 4,
         position: "relative",
@@ -27,8 +27,8 @@ const AuthNavHeader = ({ text }) => {
             color: "#FCFBFC",
             position: "absolute",
             bottom: 0,
-            fontSize: 20,
-            left: 10,
+            fontSize: 25,
+            left: 5,
           }}
         >
           {text}
@@ -48,7 +48,7 @@ const AuthNavHeader = ({ text }) => {
           style={{
             fontFamily: "lalezar",
             color: "white",
-            fontSize: 24,
+            fontSize: 20,
             textAlign: "right",
           }}
         >
