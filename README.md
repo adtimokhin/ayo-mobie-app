@@ -1,4 +1,4 @@
-# AYO The One: React Native Expo Dating App
+# AYO The One: Dating App
 ![Project Preview](https://user-images.githubusercontent.com/37998602/284029890-77f9338b-1cc2-4bc2-b01e-724da536b02e.png)
 
 PartyDate is a mobile app built using React Native and Expo that aims to connect people looking to meet others at parties and bars. This app provides a platform for users to find potential matches in social settings, facilitating connections and conversations in real-time.
